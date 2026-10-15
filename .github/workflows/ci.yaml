@@ -26,10 +26,13 @@ jobs:
                   cache: "npm"
 
             - name: Install dependencies
+              working-directory: Meetly.Frontend
               run: npm ci
 
             - name: Run linter
+              working-directory: Meetly.Frontend
               run: npm run lint
 
             - name: Build project
+              working-directory: Meetly.Frontend
               run: npm run build
