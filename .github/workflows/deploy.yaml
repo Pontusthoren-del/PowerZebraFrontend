@@ -5,8 +5,14 @@ on:
         branches:
             - main
 
+permissions:
+    contents: read
+    id-token: write
+
 env:
     APP_NAME: meetly-frontend
+    ACR_NAME: ${{ vars.ACR_NAME }}
+    AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
 
 jobs:
     build-and-deploy:
@@ -15,21 +21,56 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
+            - name: Sign in to Azure
+              uses: azure/login@v2
               with:
-                  node-version: 22
-                  cache: "npm"
+                  client-id: ${{ vars.AZURE_CLIENT_ID }}
+                  tenant-id: ${{ vars.AZURE_TENANT_ID }}
+                  subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-            - name: Install dependencies
-              run: npm ci
+            - name: Build and push Docker image
+              id: build-image
+              run: |
+                  if [[ -z "$ACR_NAME" ]]; then
+                    echo "::error::Set the ACR_NAME repository variable."
+                    exit 1
+                  fi
 
-            - name: Build project
-              run: npm run build
+                  az acr login --name "$ACR_NAME"
 
-            - name: Deploy to Azure Web App
-              uses: azure/webapps-deploy@v3
-              with:
-                  app-name: ${{ env.APP_NAME }}
-                  publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-                  package: ./dist
+                  image="${ACR_NAME}.azurecr.io/${APP_NAME}:${GITHUB_SHA}"
+                  docker build --pull \
+                    --file Meetly.Frontend/Dockerfile \
+                    --tag "$image" \
+                    Meetly.Frontend
+                  docker push "$image"
+                  echo "image=$image" >> "$GITHUB_OUTPUT"
+
+            - name: Configure and restart Azure Web App
+              env:
+                  IMAGE: ${{ steps.build-image.outputs.image }}
+              run: |
+                  if [[ -z "$AZURE_RESOURCE_GROUP" ]]; then
+                    echo "::error::Set the AZURE_RESOURCE_GROUP repository variable."
+                    exit 1
+                  fi
+
+                  az webapp config set \
+                    --resource-group "$AZURE_RESOURCE_GROUP" \
+                    --name "$APP_NAME" \
+                    --generic-configurations '{"acrUseManagedIdentityCreds": true}'
+
+                  az webapp config container set \
+                    --resource-group "$AZURE_RESOURCE_GROUP" \
+                    --name "$APP_NAME" \
+                    --container-image-name "$IMAGE" \
+                    --container-registry-url "https://${ACR_NAME}.azurecr.io"
+
+                  az webapp config appsettings set \
+                    --resource-group "$AZURE_RESOURCE_GROUP" \
+                    --name "$APP_NAME" \
+                    --settings WEBSITES_PORT=8080
+
+                  az webapp restart \
+                    --resource-group "$AZURE_RESOURCE_GROUP" \
+                    --name "$APP_NAME"
