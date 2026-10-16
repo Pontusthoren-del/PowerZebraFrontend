@@ -11,7 +11,9 @@ const mockMeetupList: Meetup[] = [
     location: "Varberg, Sal A",
     host: "Anna Svensson",
     capacity: 20,
+    category: "Frontend",
     registeredCount: 5,
+    availableSpots: 15, // 20 - 5
   },
   {
     id: 2,
@@ -21,7 +23,9 @@ const mockMeetupList: Meetup[] = [
     location: "Göteborg, Rum 2",
     host: "Erik Lind",
     capacity: 15,
-    registeredCount: 15, // Fullbokad, för att testa hur "fullt" ser ut
+    category: "Socialt",
+    registeredCount: 15,
+    availableSpots: 0, // Fullbokad, för att testa hur "fullt" ser ut
   },
   {
     id: 3,
@@ -31,7 +35,9 @@ const mockMeetupList: Meetup[] = [
     location: "Halmstad, Sal B",
     host: "Maria Holm",
     capacity: 30,
+    category: "Backend",
     registeredCount: 12,
+    availableSpots: 18, // 30 - 12
   },
 ];
 

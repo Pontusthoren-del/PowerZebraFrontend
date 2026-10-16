@@ -24,6 +24,7 @@ export default function Home() {
                     </p>
                     <p className="meetup-card-info">Plats: {meetup.location}</p>
                     <p className="meetup-card-info">Värd: {meetup.host} </p>
+                    <p className="meetup-card-info">Lediga platser {meetup.availableSpots}</p>
                 </div>))}
             </section>
             </div>
