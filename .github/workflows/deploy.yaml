@@ -3,13 +3,7 @@ name: Frontend CD
 on:
   push:
     branches:
-      - dev
-
-on:
-  pull_request:
-    branches:
       - main
-      - dev
 
 env: 
   APP_NAME: meetly-frontend
