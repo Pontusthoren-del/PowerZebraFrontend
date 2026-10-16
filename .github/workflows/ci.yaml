@@ -1,0 +1,39 @@
+name: Frontend CI
+#Random comment
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - Dev
+
+permissions:
+    contents: read
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: "npm"
+                  cache-dependency-path: Meetly.Frontend/package-lock.json
+
+            - name: Install dependencies
+              working-directory: Meetly.Frontend
+              run: npm ci
+
+            - name: Run linter
+              working-directory: Meetly.Frontend
+              run: npm run lint
+
+            - name: Build project
+              working-directory: Meetly.Frontend
+              run: npm run build
