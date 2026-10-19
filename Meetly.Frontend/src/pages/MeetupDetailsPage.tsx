@@ -3,7 +3,7 @@ import { useMeetups } from "../hooks/useMeetups";
 
 export default function MeetupDetails() {
     const { id } = useParams(); // Plockar ut ID:t ur URL:en
-    const { meetups, loading, error } = useMeetups();
+    const { meetups, loading, error } = useMeetups("");
 
     if (loading) return <p>Laddar...</p>;
     if (error) return <p>{error}</p>;
@@ -17,7 +17,6 @@ export default function MeetupDetails() {
             <h1>{meetup.title}</h1>
             <p>Värd: {meetup.host}</p>
             <p>Plats: {meetup.location}</p>
-            {/* Här kan du nu slänga in all extra detaljinfo! */}
         </div>
     );
 }
