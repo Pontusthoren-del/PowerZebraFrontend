@@ -13,7 +13,7 @@ export function useMeetups(search: string) {
         .then(setMeetups)
         .catch(() => setError("Kunde inte hämta meetups"))
         .finally(() => setLoading(false));
-    }, [search]);
+     }, [search]);
 
     return { meetups, loading, error}; 
 }

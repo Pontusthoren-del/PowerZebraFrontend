@@ -3,9 +3,7 @@ import type { Meetup } from "../types/Meetup";
 import mockMeetingList from "../mocks/mockMeetingList";
 
 export async function getMeetups (search: string): Promise<Meetup[]> {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    
-    const term = search.trim().toLowerCase();
+   const term = search.trim().toLowerCase();
     if (!term) 
     {
         return mockMeetingList;
