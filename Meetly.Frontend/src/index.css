@@ -1,0 +1,106 @@
+/* Färger på ett ställe: ändra här så ändras de överallt */
+:root {
+    --bg: #F3F5F9;          /* bakgrund */
+    --surface: #FFFFFF;     /* kort, header */
+    --text: #14171F;        /* text */
+    --muted: #4A5263;       /* grå text */
+    --border: #E1E5EE;      /* linjer */
+    --accent: #2348C7;      /* blå (knappar) */
+    --accent-soft: #E6ECFB; /* ljusblå */
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, sans-serif;
+}
+
+/* Hela sidan: footer alltid längst ner */
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.layout-content {
+    flex: 1;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    box-sizing: border-box;
+}
+
+/* ---------- Header ---------- */
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+.header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    flex-wrap: wrap;               /* på mobil hamnar menyn under loggan */
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.header-logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+}
+.header-logo-dot { color: var(--accent); }
+
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.nav-link {
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+}
+.nav-link:hover { background: var(--bg); }
+.nav-link.active { background: #EEF1F7; }  /* sidan man är på */
+
+.nav-outline {                              /* Registrera */
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+.nav-primary {                              /* Logga in */
+    color: #FFFFFF;
+    background: var(--accent);
+}
+.nav-primary:hover { background: #16328F; }
+
+.nav-button {                               /* Logga ut */
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+.footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.page-title { margin-top: 0; }
