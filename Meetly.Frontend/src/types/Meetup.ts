@@ -10,3 +10,8 @@ export interface Meetup { //Mall för meetup innehåller
     registeredCount: number;
     availableSpots: number;
 }
+
+export interface MyRegistrations {
+    upcoming: Meetup[];
+    past: [];
+}
