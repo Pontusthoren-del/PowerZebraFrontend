@@ -44,7 +44,7 @@ export default function RegisterForm({ onSubmit }: Props) {
         />
       ))}
       <button type="submit" className="auth-button">
-        Registera
+        Registrera
       </button>
     </form>
   );
