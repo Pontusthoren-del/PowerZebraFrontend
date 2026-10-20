@@ -1,10 +1,29 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { getMeetupById } from "../api/meetups";
+import Modal from "../components/Modal";
 import { useMeetup } from "../hooks/useMeetup";
+import { useRegistration } from "../hooks/useRegistration";
 import "../pages/styles/MeetupDetailsPage.css";
 
 export default function MeetupDetailsPage() {
     const { id } = useParams();
-    const { meetup, loading, error } = useMeetup(Number(id));
+    const { meetup, setMeetup, loading, error } = useMeetup(Number(id));
+    const [confirmOpen, setConfirmOpen] = useState(false);
+    const { toggle, registered, status, message, isLoggedIn } = useRegistration(
+        Number(id),
+        // 201: uppdatera "X av Y platser" med siffrorna från svaret
+        (c) =>
+            setMeetup((m) =>
+                m ? { ...m, registeredCount: c.registeredCount, availableSpots: c.availableSpots } : m,
+            ),
+        // Efter fel eller avanmälan: hämta om meetupen så att platserna stämmer
+        () => {
+            getMeetupById(Number(id))
+                .then((m) => m && setMeetup(m))
+                .catch(() => {});
+        },
+    );
 
     if (loading) return <p className="meetup-details-message">Laddar...</p>;
     if (error) return <p className="meetup-details-message">{error}</p>;
@@ -78,18 +97,64 @@ export default function MeetupDetailsPage() {
                     <p className="meetup-registration-description">
                         Anmäl dig till mötet med ditt konto.
                     </p>
-                    <button
-                        className="meetup-registration-button"
-                        type="button"
-                        disabled={meetup.availableSpots <= 0}
+                    {isLoggedIn ? (
+                        <button
+                            className={`meetup-registration-button${registered ? " meetup-registration-button-unregister" : ""}`}
+                            type="button"
+                            onClick={registered ? () => setConfirmOpen(true) : toggle}
+                            disabled={
+                                status === "loading" ||
+                                (!registered && meetup.availableSpots <= 0)
+                            }
+                        >
+                            {status === "loading"
+                                ? "Vänta..."
+                                : registered
+                                  ? "Avanmäl mig"
+                                  : meetup.availableSpots <= 0
+                                    ? "Fullbokat"
+                                    : "Anmäl mig"}
+                        </button>
+                    ) : (
+                        <Link to="/login" className="meetup-registration-button">
+                            Logga in för att anmäla dig
+                        </Link>
+                    )}
+                    {/* Felmeddelande om det finns ett, annars bekräftelse när man är anmäld */}
+                    <p
+                        className={`meetup-registration-note${
+                            status === "error"
+                                ? " meetup-registration-error"
+                                : registered || status === "success"
+                                  ? " meetup-registration-success"
+                                  : ""
+                        }`}
+                        role="status"
+                        aria-live="polite"
                     >
-                        {meetup.availableSpots <= 0 ? "Fullbokat" : "Anmäl mig"}
-                    </button>
-                    <p className="meetup-registration-note">
-                        Anmälan är inte aktiv ännu.
+                        {message || (registered ? "✓ Du är anmäld" : "")}
                     </p>
                 </section>
             </div>
+
+            <Modal open={confirmOpen} onClose={() => setConfirmOpen(false)} title="Avanmäl dig?">
+                <p>Vill du avanmäla dig från {meetup.title}? Din plats blir ledig för andra.</p>
+                <div className="meetup-confirm-actions">
+                    <button type="button" className="meetup-confirm-keep" onClick={() => setConfirmOpen(false)}>
+                        Behåll min plats
+                    </button>
+                    <button
+                        type="button"
+                        className="meetup-confirm-yes"
+                        onClick={() => {
+                            setConfirmOpen(false);
+                            toggle(); // registered är true, så toggle avanmäler
+                        }}
+                    >
+                        Ja, avanmäl mig
+                    </button>
+                </div>
+            </Modal>
         </main>
     );
 }
