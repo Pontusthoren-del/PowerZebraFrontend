@@ -9,9 +9,10 @@ export default function MeetupList() {
 
     return (
         <>
-            <h2 className="home-title">Kommande meetups</h2>
-
-            <SearchBar value={search} onChange={setSearch} />
+            <div className="home-search-header">
+                <h1 className="home-title">Kommande meetups</h1>
+                <SearchBar value={search} onChange={setSearch} />
+            </div>
 
             {/* Visas inne i sidan, så sökfältet finns kvar medan listan laddar */}
             {loading && <p>Laddar meetups...</p>}
