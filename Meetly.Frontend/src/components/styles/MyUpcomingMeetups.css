@@ -1,0 +1,60 @@
+/* De kommande anmälningarna i hälsningsrutan */
+.my-upcoming { margin-top: 16px; }
+
+.my-upcoming-title {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.my-upcoming-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.my-upcoming-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    color: var(--text);
+    text-decoration: none;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.my-upcoming-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(22, 96, 189, 0.12);
+}
+
+.my-upcoming-time {
+    flex: 0 0 auto;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+}
+.my-upcoming-name { flex: 1; font-weight: 600; }
+.my-upcoming-arrow { color: var(--muted); }
+
+.my-upcoming-more {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* Mobil: tiden ovanför namnet */
+@media (max-width: 600px) {
+    .my-upcoming-item { flex-wrap: wrap; gap: 8px; }
+    .my-upcoming-name { flex-basis: 100%; order: 2; }
+    .my-upcoming-arrow { display: none; }
+}
