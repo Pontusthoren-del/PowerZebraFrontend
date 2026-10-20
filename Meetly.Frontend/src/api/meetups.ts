@@ -1,15 +1,15 @@
 // Anrop till backend för meetups
-import type { Meetup, MeetupFilters } from "../types/Meetup";
+import type { Meetup, MeetupFilters, MyRegistrations } from "../types/Meetup";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function getMeetups(filters: MeetupFilters): Promise<Meetup[]> {
-    const params = new URLSearchParams();
+  const params = new URLSearchParams();
 
-    // Skicka bara med filter som är ifyllda
-    for (const [key, value] of Object.entries(filters)) {
-        if (value.trim()) params.set(key, value.trim());
-    }
+  // Skicka bara med filter som är ifyllda
+  for (const [key, value] of Object.entries(filters)) {
+    if (value.trim()) params.set(key, value.trim());
+  }
 
   const res = await fetch(`${API_URL}/api/meetups?${params}`);
   if (!res.ok) throw new Error("Kunde inte hämta meetups");
@@ -34,7 +34,7 @@ export async function getMyRegistrations(
 }
 
 export async function getCategories(): Promise<string[]> {
-    const res = await fetch(`${API_URL}/api/meetups/categories`);
-    if (!res.ok) throw new Error("Kunde inte hämta kategorier");
-    return res.json();
+  const res = await fetch(`${API_URL}/api/meetups/categories`);
+  if (!res.ok) throw new Error("Kunde inte hämta kategorier");
+  return res.json();
 }
