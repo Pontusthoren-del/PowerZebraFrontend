@@ -7,13 +7,16 @@ export function useMeetups(search: string) {
     const [meetups, setMeetups] = useState<Meetup[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>();
-    
+
     useEffect(() => {
         getMeetups(search)
-        .then(setMeetups)
-        .catch(() => setError("Kunde inte hämta meetups"))
-        .finally(() => setLoading(false));
-     }, [search]);
+            .then((data) => {
+                setMeetups(data);
+                setError(null);
+            })
+            .catch(() => setError("Kunde inte hämta meetups"))
+            .finally(() => setLoading(false));
+    }, [search]);
 
-    return { meetups, loading, error}; 
+    return { meetups, loading, error };
 }
