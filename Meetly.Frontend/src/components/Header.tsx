@@ -1,9 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
-  const navClass = ({ isActive }: { isActive: boolean }) =>
-    isActive ? "nav-link active" : "nav-link";
-
+ 
   return (
     <header className="header">
       <div className="header-inner">
@@ -12,8 +10,11 @@ export default function Header() {
         </Link>
 
         <nav className="header-nav">
-          <NavLink to="/" end className={navClass}>
+          <NavLink to="/" end className="nav-link">
             Meetups
+          </NavLink>
+          <NavLink to="/register" className="nav-button nav-button-outline">
+            Registrera
           </NavLink>
         </nav>
       </div>
