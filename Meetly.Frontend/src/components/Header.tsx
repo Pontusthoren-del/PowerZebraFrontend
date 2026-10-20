@@ -12,8 +12,11 @@ export default function Header() {
         </Link>
 
         <nav className="header-nav">
-          <NavLink to="/" end className={navClass}>
+          <NavLink to="/" end className="nav-link">
             Meetups
+          </NavLink>
+          <NavLink to="/register" className="nav-button nav-button-outline">
+            Registrera
           </NavLink>
         </nav>
       </div>
