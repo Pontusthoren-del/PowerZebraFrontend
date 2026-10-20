@@ -1,3 +1,4 @@
+import "./styles/SearchBar.css";
 
 interface Props {
   value: string;

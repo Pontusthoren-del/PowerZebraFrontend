@@ -1,0 +1,151 @@
+.meetup-details {
+    width: 100%;
+}
+
+.meetup-details-back {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.meetup-details-back:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.meetup-details-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(17rem, 1fr);
+    align-items: start;
+    gap: 1.5rem;
+}
+
+.meetup-details-card,
+.meetup-registration-card {
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.meetup-details-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.meetup-details-category,
+.meetup-details-spots {
+    padding: 0.375rem 0.75rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.meetup-details-spots {
+    background: #e9f5ee;
+    color: var(--success);
+}
+
+.meetup-details-spots-full {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.meetup-details-title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.75rem, 4vw, 2rem);
+    letter-spacing: -0.02em;
+}
+
+.meetup-details-description {
+    margin: 0;
+    color: var(--muted);
+    white-space: pre-wrap;
+}
+
+.meetup-details-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.75rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+}
+
+.meetup-details-info dt {
+    margin-bottom: 0.25rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.meetup-details-info dd {
+    margin: 0;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.meetup-registration-title {
+    margin: 0 0 0.5rem;
+}
+
+.meetup-registration-description {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+}
+
+.meetup-registration-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.meetup-registration-button:hover:not(:disabled) {
+    background: var(--accent-hover);
+}
+
+.meetup-registration-button:disabled {
+    background: var(--muted);
+    cursor: not-allowed;
+}
+
+.meetup-registration-note,
+.meetup-details-message {
+    color: var(--muted);
+}
+
+.meetup-registration-note {
+    margin: 0.75rem 0 0;
+    font-size: 0.8125rem;
+}
+
+@media (max-width: 720px) {
+    .meetup-details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .meetup-details-card,
+    .meetup-registration-card {
+        padding: 1.125rem;
+    }
+
+    .meetup-details-info {
+        grid-template-columns: 1fr;
+    }
+}
