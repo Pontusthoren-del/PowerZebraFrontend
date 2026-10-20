@@ -1,0 +1,77 @@
+.hero {
+    text-align: center;
+    padding: 56px 24px;
+    margin-bottom: 32px;
+    background: linear-gradient(180deg, var(--fresh-bg) 0%, var(--surface) 100%);
+    border: 1px solid var(--fresh-border);
+    border-radius: 20px;
+}
+.hero-logo {
+    margin: 0;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+.hero-text {
+    max-width: 480px;
+    margin: 12px auto 28px;
+    font-size: 18px;
+    color: var(--muted);
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+.hero-button {
+    padding: 12px 28px;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+.hero-button-primary {
+    border: 2px solid var(--fresh);
+    background: var(--fresh);
+    color: var(--fresh-text);
+}
+.hero-button-primary:hover { background: var(--fresh-hover); border-color: var(--fresh-hover); }
+.hero-button-outline {
+    border: 2px solid var(--fresh-border);
+    background: var(--surface);
+    color: var(--text);
+}
+.hero-button-outline:hover { background: var(--fresh-bg); }
+
+/* Utloggad: välkomsten fyller större delen av sidan */
+.hero:not(.hero-small) {
+    position: relative;
+    overflow: hidden;
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+    background: var(--fresh-bg);
+}
+
+/* Prickarna ligger bakom texten och knapparna */
+.hero-dots { position: absolute; inset: 0; pointer-events: none; }
+.hero-dot { position: absolute; border-radius: 50%; }
+.hero > :not(.hero-dots, .modal) { position: relative; }  /* modalen ska inte påverkas */
+
+@media (max-width: 600px) {
+    .hero-dot { transform: scale(0.55); }
+}
+
+/* Inloggad: mindre hälsning i stället för stora loggan */
+.hero-small { padding: 28px 24px; text-align: left; }
+.hero-small .hero-text { margin: 4px 0 0; }
+.hero-greeting { margin: 0; font-size: 28px; }
+
+@media (max-width: 600px) {
+    .hero { padding: 40px 16px; }
+    .hero-logo { font-size: 44px; }
+}

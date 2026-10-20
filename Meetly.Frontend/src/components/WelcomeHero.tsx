@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../store/hooks";
 import Modal from "./Modal";
 import LoginForm from "./LoginForm";
+import "./WelcomeHero.css";
 
 // Prickar i bakgrunden – som människor som samlas i små grupper
 const dots = [
