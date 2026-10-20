@@ -19,7 +19,7 @@ export default function Header() {
         </Link>
 
         <nav className="header-nav">
-          {/* Inloggad: Meetups, namn och Logga ut. Utloggad: Registrera och Logga in */}
+          {/* Inloggad: Meetups, namn och Logga ut. Utloggad: bara Logga in (Skapa konto finns på startsidan) */}
           {user ? (
             <>
               <NavLink to="/" end className="nav-link">
@@ -31,14 +31,9 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <>
-              <NavLink to="/register" className="nav-link nav-soft-outline">
-                Registrera
-              </NavLink>
-              <button type="button" className="nav-link nav-soft" onClick={() => setShowLogin(true)}>
-                Logga in
-              </button>
-            </>
+            <button type="button" className="nav-link nav-soft" onClick={() => setShowLogin(true)}>
+              Logga in
+            </button>
           )}
         </nav>
       </div>

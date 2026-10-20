@@ -7,17 +7,17 @@ import "./styles/WelcomeHero.css";
 
 // Prickar i bakgrunden – som människor som samlas i små grupper
 const dots = [
-    { left: "8%", top: "14%", size: 132, color: "var(--fresh-hover)" },
-    { left: "18%", top: "26%", size: 72, color: "var(--fresh)" },
+    { left: "8%", top: "14%", size: 132, color: "var(--sky-dot)" },
+    { left: "18%", top: "26%", size: 72, color: "var(--sky-dot-light)" },
     { left: "15%", top: "10%", size: 28, color: "var(--fresh-strong)" },
     { left: "22%", top: "17%", size: 14, color: "var(--accent)" },
-    { left: "76%", top: "56%", size: 168, color: "var(--fresh)" },
-    { left: "72%", top: "70%", size: 80, color: "var(--fresh-hover)" },
+    { left: "76%", top: "56%", size: 168, color: "var(--sky-dot-light)" },
+    { left: "72%", top: "70%", size: 80, color: "var(--sky-dot)" },
     { left: "88%", top: "51%", size: 36, color: "var(--fresh-strong)" },
     { left: "74%", top: "64%", size: 14, color: "var(--accent)" },
-    { left: "84%", top: "15%", size: 44, color: "var(--fresh)" },
-    { left: "89%", top: "20%", size: 20, color: "var(--fresh-hover)" },
-    { left: "12%", top: "74%", size: 52, color: "var(--fresh)" },
+    { left: "84%", top: "15%", size: 44, color: "var(--sky-dot-light)" },
+    { left: "89%", top: "20%", size: 20, color: "var(--sky-dot)" },
+    { left: "12%", top: "74%", size: 52, color: "var(--sky-dot-light)" },
     { left: "17%", top: "80%", size: 22, color: "var(--fresh-strong)" },
 ];
 
@@ -40,13 +40,22 @@ export default function WelcomeHero() {
     }
 
     return (
-        <section className="hero">
+        <section className="hero hero-full">
             <div className="hero-dots" aria-hidden="true">
                 {dots.map((dot, i) => (
                     <span
                         key={i}
                         className="hero-dot"
-                        style={{ left: dot.left, top: dot.top, width: dot.size, height: dot.size, background: dot.color }}
+                        style={{
+                            left: dot.left,
+                            top: dot.top,
+                            width: dot.size,
+                            height: dot.size,
+                            background: dot.color,
+                            // Olika tempo så att prickarna inte rör sig i takt
+                            animationDuration: `${8 + (i % 4) * 2}s`,
+                            animationDelay: `${-i * 1.7}s`,
+                        }}
                     />
                 ))}
             </div>
