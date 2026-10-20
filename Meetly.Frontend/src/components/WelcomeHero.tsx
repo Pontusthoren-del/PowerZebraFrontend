@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../store/hooks";
 import Modal from "./Modal";
 import LoginForm from "./LoginForm";
+import MyUpcomingMeetups from "./MyUpcomingMeetups";
 import "./styles/WelcomeHero.css";
 
 // Prickar i bakgrunden – som människor som samlas i små grupper
@@ -34,7 +35,7 @@ export default function WelcomeHero() {
         return (
             <section className="hero hero-small">
                 <h1 className="hero-greeting">Hej {user.firstName}! 👋</h1>
-                <p className="hero-text">Här är de kommande meetupsen.</p>
+                <MyUpcomingMeetups />
             </section>
         );
     }
