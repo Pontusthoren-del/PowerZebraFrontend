@@ -17,11 +17,17 @@
     --fresh-strong: #B9DBFF;  /* lite starkare ljusblå, till prickarna */
     --fresh-bg: #F2F8FF;      /* svag ljusblå bakgrund */
     --fresh-border: #DCEBFB;  /* ljusblå kant */
+
+    /* Himmelsblå bakgrund för hela sidan */
+    --sky: #D6EAFC;           /* sidans bakgrund */
+    --sky-deep: #EDF6FF;      /* header och footer (ljusare än sidan) */
+    --sky-dot: #A8CDF1;       /* blå prickar */
+    --sky-dot-light: rgba(255, 255, 255, 0.6);  /* vita prickar */
 }
 
 body {
     margin: 0;
-    background: var(--bg);
+    background: var(--sky);
     color: var(--text);
     font-family: system-ui, sans-serif;
 }

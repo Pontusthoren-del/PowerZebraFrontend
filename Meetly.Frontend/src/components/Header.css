@@ -1,11 +1,13 @@
+/* Ljusblå header som tonar ut nedåt i stället för en skarp kant */
 .header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 1;                    /* ligger över prickarna */
+    background: linear-gradient(180deg, var(--sky-deep) 0%, var(--sky-deep) 45%, transparent 100%);
 }
 .header-inner {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 16px 24px;
+    padding: 16px 24px 32px;       /* extra luft nertill för tonen */
     display: flex;
     flex-wrap: wrap;               /* på mobil hamnar menyn under loggan */
     align-items: center;
@@ -33,8 +35,8 @@
     color: var(--text);
     text-decoration: none;
 }
-.nav-link:hover { background: var(--bg); }
-.nav-link.active { background: #EEF1F7; }  /* sidan man är på */
+.nav-link:hover { background: rgba(255, 255, 255, 0.6); }
+.nav-link.active { background: rgba(255, 255, 255, 0.8); }  /* sidan man är på */
 
 button.nav-link {                           /* knappar ser ut som länkarna */
     border: none;
@@ -42,17 +44,13 @@ button.nav-link {                           /* knappar ser ut som länkarna */
     cursor: pointer;
 }
 
-/* Inloggning */
-.nav-soft {                                 /* Logga in / Logga ut */
-    background: var(--fresh);
-    color: var(--fresh-text);
+/* Logga in / Logga ut: blå knapp, samma som Logga in på startsidan */
+.nav-soft {
+    background: var(--fresh-text);
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(22, 96, 189, 0.2);
 }
-.nav-soft:hover { background: var(--fresh-hover); }
-.nav-soft-outline {                         /* Registrera */
-    border: 1px solid var(--fresh-border);
-    color: var(--text);
-}
-.nav-soft-outline:hover { background: var(--fresh-bg); }
+.nav-soft:hover { background: #12519E; }
 .nav-user {                                 /* namnet när man är inloggad */
     padding: 10px 4px 10px 12px;
     font-weight: 600;
