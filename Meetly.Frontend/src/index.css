@@ -288,3 +288,175 @@ h3,
     font-size: 14px;
     color: var(--muted);
 }
+
+.page-title { margin-top: 0; }
+
+/* Ljusblå "fresh"-toner för välkomst, inloggning och knappar */
+:root {
+    --fresh: #E3F1FF;         /* ljusblå knapp */
+    --fresh-hover: #CFE6FF;   /* lite mörkare vid hover */
+    --fresh-text: #1660BD;    /* blå text på ljusblått (mörk nog för att vara lättläst) */
+    --fresh-strong: #B9DBFF;  /* lite starkare ljusblå, till prickarna */
+    --fresh-bg: #F2F8FF;      /* svag ljusblå bakgrund */
+    --fresh-border: #DCEBFB;  /* ljusblå kant */
+}
+
+/* ---------- Välkomst (startsidan) ---------- */
+.hero {
+    text-align: center;
+    padding: 56px 24px;
+    margin-bottom: 32px;
+    background: linear-gradient(180deg, var(--fresh-bg) 0%, var(--surface) 100%);
+    border: 1px solid var(--fresh-border);
+    border-radius: 20px;
+}
+.hero-logo {
+    margin: 0;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+.hero-text {
+    max-width: 480px;
+    margin: 12px auto 28px;
+    font-size: 18px;
+    color: var(--muted);
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+.hero-button {
+    padding: 12px 28px;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+.hero-button-primary {
+    border: 2px solid var(--fresh);
+    background: var(--fresh);
+    color: var(--fresh-text);
+}
+.hero-button-primary:hover { background: var(--fresh-hover); border-color: var(--fresh-hover); }
+.hero-button-outline {
+    border: 2px solid var(--fresh-border);
+    background: var(--surface);
+    color: var(--text);
+}
+.hero-button-outline:hover { background: var(--fresh-bg); }
+
+/* Utloggad: välkomsten fyller större delen av sidan */
+.hero:not(.hero-small) {
+    position: relative;
+    overflow: hidden;
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+    background: var(--fresh-bg);
+}
+
+/* Prickarna ligger bakom texten och knapparna */
+.hero-dots { position: absolute; inset: 0; pointer-events: none; }
+.hero-dot { position: absolute; border-radius: 50%; }
+.hero > :not(.hero-dots, .modal) { position: relative; }  /* modalen ska inte påverkas */
+
+@media (max-width: 600px) {
+    .hero-dot { transform: scale(0.55); }
+}
+
+/* Inloggad: mindre hälsning i stället för stora loggan */
+.hero-small { padding: 28px 24px; text-align: left; }
+.hero-small .hero-text { margin: 4px 0 0; }
+.hero-greeting { margin: 0; font-size: 28px; }
+
+@media (max-width: 600px) {
+    .hero { padding: 40px 16px; }
+    .hero-logo { font-size: 44px; }
+}
+
+/* ---------- Modal ---------- */
+.modal {
+    width: min(420px, calc(100% - 32px));
+    padding: 0;
+    border: none;
+    border-radius: 20px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 20px 60px rgba(20, 23, 31, 0.25);
+}
+.modal::backdrop {
+    background: rgba(20, 23, 31, 0.5);
+    backdrop-filter: blur(2px);
+}
+body:has(.modal[open]) { overflow: hidden; }  /* sidan bakom scrollar inte */
+
+.modal-content { position: relative; padding: 32px; }
+.modal-title { margin: 0 0 20px; }
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: none;
+    font-size: 24px;
+    color: var(--muted);
+    cursor: pointer;
+}
+.modal-close:hover { background: var(--bg); }
+.modal-footer { margin: 16px 0 0; text-align: center; color: var(--muted); }
+
+/* ---------- Formulär (logga in / registrera) ---------- */
+.auth-page { max-width: 420px; margin: 0 auto; }
+.auth-form { display: flex; flex-direction: column; gap: 12px; }
+.auth-form input {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font: inherit;
+}
+.auth-form input:focus { outline: 2px solid var(--fresh-text); border-color: transparent; }
+.auth-button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: var(--fresh);
+    color: var(--fresh-text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.auth-button:hover { background: var(--fresh-hover); }
+.auth-button:disabled { opacity: 0.6; cursor: wait; }
+.auth-error { margin: 0; color: #B42318; }
+
+/* ---------- Header: inloggning ---------- */
+.header-nav { align-items: center; }
+button.nav-link {                           /* knappar ser ut som länkarna */
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+.nav-soft {                                 /* Logga in / Logga ut */
+    background: var(--fresh);
+    color: var(--fresh-text);
+}
+.nav-soft:hover { background: var(--fresh-hover); }
+.nav-soft-outline {                         /* Registrera */
+    border: 1px solid var(--fresh-border);
+    color: var(--text);
+}
+.nav-soft-outline:hover { background: var(--fresh-bg); }
+.nav-user {                                 /* namnet när man är inloggad */
+    padding: 10px 4px 10px 12px;
+    font-weight: 600;
+    color: var(--muted);
+}
