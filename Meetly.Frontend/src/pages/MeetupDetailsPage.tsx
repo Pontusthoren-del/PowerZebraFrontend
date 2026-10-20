@@ -1,14 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useMeetups } from "../hooks/useMeetups";
+import { useMeetup } from "../hooks/useMeetup";
 
 export default function MeetupDetails() {
     const { id } = useParams(); // Plockar ut ID:t ur URL:en
-    const { meetups, loading, error } = useMeetups("");
+    const { meetup, loading, error } = useMeetup(Number(id));
 
     if (loading) return <p>Laddar...</p>;
     if (error) return <p>{error}</p>;
-
-    const meetup = meetups.find((m) => m.id === Number(id));
 
     if (!meetup) return <p>Hittade ingen meetup!</p>;
 
