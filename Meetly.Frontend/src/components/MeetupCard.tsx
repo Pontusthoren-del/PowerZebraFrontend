@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "../components/styles/MeetupCard.css";
+import marker from "../assets/map_marker.png";
+import user from "../assets/user.png";
 
 interface MeetupCardProps {
     meetup: {
@@ -18,19 +20,44 @@ interface MeetupCardProps {
 
 export default function MeetupCard({ meetup }: MeetupCardProps) {
     return (
-        <Link to={`/meetups/${meetup.id}`} className="meetup-card">
+        <div className="meetup-card">
+            <div className="meetup-card-header">
+                <p className="meetup-card-time">
+                    {new Date(meetup.startTime).toLocaleDateString("sv-SE", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                    })}
+                    {"\u00a0\u00a0\u00a0\u00a0"}
+                    {new Date(meetup.startTime).toLocaleTimeString("sv-SE", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    })}
+                </p>
+                <p
+                    className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
+                >
+                    {meetup.availableSpots <= 0
+                        ? "Fullbokat"
+                        : `Lediga platser: ${meetup.availableSpots}`}
+                </p>
+            </div>
             <h3 className="meetup-card-title">{meetup.title}</h3>
-            <p className="meetup-card-info">
-                {new Date(meetup.startTime).toLocaleString("sv-SE", {
-                    dateStyle: "short",
-                    timeStyle: "short",
-                })}
-            </p>
-            <p className="meetup-card-info">Plats: {meetup.location}</p>
-            <p className="meetup-card-info">Värd: {meetup.host}</p>
-            <p className="meetup-card-info">
-                Lediga platser: {meetup.availableSpots}
-            </p>
-        </Link>
+            <div className="meetup-card-info-container">
+                <img src={user} alt="user" className="meetup-card-icon" />
+                <p className="meetup-card-info"> {meetup.location}</p>
+            </div>
+            <div className="meetup-card-info-container">
+                <img
+                    src={marker}
+                    alt="Location marker"
+                    className="meetup-card-icon"
+                />
+                <p className="meetup-card-info">{meetup.host}</p>
+            </div>
+            <Link to={`/meetups/${meetup.id}`}>
+                <button className="meetup-card-button">Läs mer</button>
+            </Link>
+        </div>
     );
 }

@@ -13,9 +13,10 @@ export default function Home() {
 
     return (
         <div className="home">
-            <h1 className="home-title">Kommande meetups</h1>
-
-            <SearchBar value={search} onChange={setSearch} />
+            <div className="home-search-header">
+                <h1 className="home-title">Kommande meetups</h1>
+                <SearchBar value={search} onChange={setSearch} />
+            </div>
             {meetups.length === 0 && (
                 <p className="home-empty">Inga meetups matchar din sökning.</p>
             )}
