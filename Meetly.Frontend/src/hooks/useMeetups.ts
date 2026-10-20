@@ -9,9 +9,11 @@ export function useMeetups(search: string) {
     const [error, setError] = useState<string | null>();
 
     useEffect(() => {
-        setError(null);
         getMeetups(search)
-            .then(setMeetups)
+            .then((data) => {
+                setMeetups(data);
+                setError(null);
+            })
             .catch(() => setError("Kunde inte hämta meetups"))
             .finally(() => setLoading(false));
     }, [search]);
