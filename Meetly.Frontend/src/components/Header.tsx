@@ -25,7 +25,9 @@ export default function Header() {
               <NavLink to="/" end className="nav-link">
                 Meetups
               </NavLink>
-              <span className="nav-user">{user.firstName}</span>
+              <NavLink to="/profile" className="nav-link nav-user">
+                {user.firstName}
+              </NavLink>
               <button type="button" className="nav-link nav-soft" onClick={() => dispatch(logout())}>
                 Logga ut
               </button>

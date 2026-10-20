@@ -43,16 +43,13 @@ export default function MeetupCard({ meetup }: MeetupCardProps) {
                 </p>
             </div>
             <h3 className="meetup-card-title">{meetup.title}</h3>
+            {/* Ikonerna är bara dekor, texten säger vad det är */}
             <div className="meetup-card-info-container">
-                <img src={user} alt="user" className="meetup-card-icon" />
-                <p className="meetup-card-info"> {meetup.location}</p>
+                <img src={marker} alt="" className="meetup-card-icon" />
+                <p className="meetup-card-info">{meetup.location}</p>
             </div>
             <div className="meetup-card-info-container">
-                <img
-                    src={marker}
-                    alt="Location marker"
-                    className="meetup-card-icon"
-                />
+                <img src={user} alt="" className="meetup-card-icon" />
                 <p className="meetup-card-info">{meetup.host}</p>
             </div>
             <Link to={`/meetups/${meetup.id}`}>
