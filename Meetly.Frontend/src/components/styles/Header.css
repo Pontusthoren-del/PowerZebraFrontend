@@ -1,0 +1,86 @@
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+.header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    flex-wrap: wrap;               /* på mobil hamnar menyn under loggan */
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.header-logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+.header-logo-dot { color: var(--accent); }  /* används även i välkomstskärmens logga */
+
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+.nav-link {
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+.nav-link:hover { background: var(--bg); }
+.nav-link.active { background: #EEF1F7; }  /* sidan man är på */
+
+button.nav-link {                           /* knappar ser ut som länkarna */
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Inloggning */
+.nav-soft {                                 /* Logga in / Logga ut */
+    background: var(--fresh);
+    color: var(--fresh-text);
+}
+.nav-soft:hover { background: var(--fresh-hover); }
+.nav-soft-outline {                         /* Registrera */
+    border: 1px solid var(--fresh-border);
+    color: var(--text);
+}
+.nav-soft-outline:hover { background: var(--fresh-bg); }
+.nav-user {                                 /* namnet när man är inloggad */
+    padding: 10px 4px 10px 12px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* Äldre knappstilar – används inte just nu */
+.nav-outline {
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+}
+.nav-outline:hover { background: var(--accent-soft); }
+.nav-primary {
+    color: #FFFFFF;
+    background: var(--accent);
+}
+.nav-primary:hover { background: var(--accent-hover); }
+.nav-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--muted);
+    cursor: pointer;
+}
+.nav-button:hover { background: var(--bg); color: var(--text); }

@@ -1,0 +1,32 @@
+.modal {
+    width: min(420px, calc(100% - 32px));
+    padding: 0;
+    border: none;
+    border-radius: 20px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 20px 60px rgba(20, 23, 31, 0.25);
+}
+.modal::backdrop {
+    background: rgba(20, 23, 31, 0.5);
+    backdrop-filter: blur(2px);
+}
+body:has(.modal[open]) { overflow: hidden; }  /* sidan bakom scrollar inte */
+
+.modal-content { position: relative; padding: 32px; }
+.modal-title { margin: 0 0 20px; }
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: none;
+    font-size: 24px;
+    color: var(--muted);
+    cursor: pointer;
+}
+.modal-close:hover { background: var(--bg); }
+.modal-footer { margin: 16px 0 0; text-align: center; color: var(--muted); }

@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { logout } from "../store/authSlice";
 import Modal from "./Modal";
 import LoginForm from "./LoginForm";
+import "./styles/Header.css";
 
 export default function Header() {
   const user = useAppSelector((s) => s.auth.user);

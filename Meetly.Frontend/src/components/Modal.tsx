@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import "./styles/Modal.css";
 
 interface Props {
     open: boolean;
