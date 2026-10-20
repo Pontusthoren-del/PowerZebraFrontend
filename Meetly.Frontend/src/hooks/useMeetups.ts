@@ -9,6 +9,7 @@ export function useMeetups(search: string) {
     const [error, setError] = useState<string | null>();
 
     useEffect(() => {
+        setError(null);
         getMeetups(search)
             .then(setMeetups)
             .catch(() => setError("Kunde inte hämta meetups"))

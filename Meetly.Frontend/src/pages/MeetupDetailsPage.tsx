@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useMeetups } from "../hooks/useMeetups";
 import { useMeetup } from "../hooks/useMeetup";
 
 export default function MeetupDetails() {
