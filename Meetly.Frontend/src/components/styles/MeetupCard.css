@@ -65,7 +65,8 @@
 
 .meetup-card a {
     text-decoration: none;
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 20px;
     display: block;
 }
 
