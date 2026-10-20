@@ -1,5 +1,4 @@
 // Anmälan och avanmälan till meetups
-import type { Meetup } from "../types/Meetup";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -47,15 +46,4 @@ export async function unregisterFromMeetup(id: number, token: string): Promise<v
         headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) throw new RegistrationError(res.status, await readTitle(res));
-}
-
-// Tillfällig: byts mot getMyRegistrations från api/meetups.ts när Dev är inmergad
-// Id:n på meetups som den inloggade redan är anmäld till
-export async function getMyMeetupIds(token: string): Promise<number[]> {
-    const res = await fetch(`${API_URL}/api/me/registrations`, {
-        headers: { Authorization: `Bearer ${token}` },
-    });
-    if (!res.ok) throw new Error("Kunde inte hämta dina anmälningar");
-    const body = await res.json();
-    return [...body.upcoming, ...body.past].map((m: Meetup) => m.id);
 }

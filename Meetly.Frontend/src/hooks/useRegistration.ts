@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 import {
     RegistrationError,
-    getMyMeetupIds,
     registerForMeetup,
     unregisterFromMeetup,
     type RegistrationConfirmation,
 } from "../api/registrations";
+import { getMyRegistrations } from "../api/meetups";
 import { logout } from "../store/authSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 
@@ -26,8 +26,10 @@ export function useRegistration(
     // Vid sidladdning: är jag redan anmäld?
     useEffect(() => {
         if (!token) return;
-        getMyMeetupIds(token)
-            .then((ids) => setRegistered(ids.includes(meetupId)))
+        getMyRegistrations(token)
+            .then((r) =>
+                setRegistered([...r.upcoming, ...r.past].some((m) => m.id === meetupId)),
+            )
             .catch(() => {});
     }, [token, meetupId]);
 
