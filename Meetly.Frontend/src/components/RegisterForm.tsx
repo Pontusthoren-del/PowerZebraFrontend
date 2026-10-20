@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { SignupForm } from "../types/Auth";
-import "./AuthForm.css";
+import "./styles/AuthForm.css";
 
 const fields = [
   { name: "firstName", placeholder: "Förnamn", maxLength: 50 },

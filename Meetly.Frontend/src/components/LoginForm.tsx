@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { loginUser } from "../store/authSlice";
-import "./AuthForm.css";
+import "./styles/AuthForm.css";
 
 interface Props {
     // Körs när inloggningen lyckas, t.ex. för att stänga en modal
