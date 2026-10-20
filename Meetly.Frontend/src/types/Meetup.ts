@@ -11,6 +11,11 @@ export interface Meetup {
     registeredCount: number;
     availableSpots: number;
 }
+
+export interface MyRegistrations {
+    upcoming: Meetup[];
+    past: Meetup[];
+}
 export interface MeetupFilters {
     search: string;
     category: string;
