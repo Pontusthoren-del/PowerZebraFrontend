@@ -1,0 +1,6 @@
+.meetup-list {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    background-color: #e82121;
+}
