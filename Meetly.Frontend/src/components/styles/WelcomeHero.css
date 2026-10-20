@@ -1,0 +1,105 @@
+.hero {
+    text-align: center;
+    padding: 56px 24px;
+    margin-bottom: 32px;
+    background: linear-gradient(180deg, var(--fresh-bg) 0%, var(--surface) 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(22, 96, 189, 0.08);  /* mjuk skugga i stället för kant */
+}
+.hero-logo {
+    margin: 0;
+    font-size: 80px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+.hero-text {
+    max-width: 480px;
+    margin: 16px auto 32px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--muted);
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+.hero-button {
+    min-width: 170px;              /* båda knapparna lika breda */
+    padding: 14px 32px;
+    border: none;
+    border-radius: 12px;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.hero-button:hover { transform: translateY(-1px); }
+.hero-button-primary {
+    background: var(--fresh-text);
+    color: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(22, 96, 189, 0.25);
+}
+.hero-button-primary:hover { background: #12519E; }
+.hero-button-outline {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 2px 10px rgba(22, 96, 189, 0.10);
+}
+.hero-button-outline:hover { box-shadow: 0 6px 18px rgba(22, 96, 189, 0.16); }
+
+/* Utloggad: välkomsten fyller hela ytan mellan header och footer */
+.layout-content:has(.hero-full),
+.home:has(> .hero-full) {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.hero-full {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+}
+
+/* Prickarna täcker hela skärmen och ligger bakom allt annat */
+.hero-dots {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.hero-dot {
+    position: absolute;
+    border-radius: 50%;
+    animation: hero-float 10s ease-in-out infinite;  /* tempo och start sätts per prick */
+}
+.hero > :not(.hero-dots, .modal) { position: relative; }  /* texten hamnar över prickarna */
+
+/* Prickarna guppar sakta upp och ner */
+@keyframes hero-float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-dot { animation: none; }  /* respekterar den som stängt av animationer */
+}
+
+/* Inloggad: mindre hälsning i stället för stora loggan */
+.hero-small { padding: 28px 24px; text-align: left; }
+.hero-small .hero-text { margin: 4px 0 0; font-size: 18px; }
+.hero-greeting { margin: 0; font-size: 28px; }
+
+@media (max-width: 600px) {
+    .hero { padding: 40px 16px; }
+    .hero-logo { font-size: 52px; }
+    .hero-text { font-size: 18px; }
+    .hero-dot { scale: 0.55; opacity: 0.7; }  /* mindre och svagare så texten syns */
+}

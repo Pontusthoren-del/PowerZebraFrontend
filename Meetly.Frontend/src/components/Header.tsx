@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { logout } from "../store/authSlice";
+import Modal from "./Modal";
+import LoginForm from "./LoginForm";
+import "./styles/Header.css";
 
 export default function Header() {
-  const navClass = ({ isActive }: { isActive: boolean }) =>
-    isActive ? "nav-link active" : "nav-link";
+  const user = useAppSelector((s) => s.auth.user);
+  const dispatch = useAppDispatch();
+  const [showLogin, setShowLogin] = useState(false);
 
   return (
     <header className="header">
@@ -12,11 +19,28 @@ export default function Header() {
         </Link>
 
         <nav className="header-nav">
-          <NavLink to="/" end className={navClass}>
-            Meetups
-          </NavLink>
+          {/* Inloggad: Meetups, namn och Logga ut. Utloggad: bara Logga in (Skapa konto finns på startsidan) */}
+          {user ? (
+            <>
+              <NavLink to="/" end className="nav-link">
+                Meetups
+              </NavLink>
+              <span className="nav-user">{user.firstName}</span>
+              <button type="button" className="nav-link nav-soft" onClick={() => dispatch(logout())}>
+                Logga ut
+              </button>
+            </>
+          ) : (
+            <button type="button" className="nav-link nav-soft" onClick={() => setShowLogin(true)}>
+              Logga in
+            </button>
+          )}
         </nav>
       </div>
+
+      <Modal open={showLogin} onClose={() => setShowLogin(false)} title="Logga in">
+        <LoginForm onSuccess={() => setShowLogin(false)} />
+      </Modal>
     </header>
   );
 }
