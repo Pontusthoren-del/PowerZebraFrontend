@@ -13,5 +13,5 @@ export interface Meetup { //Mall för meetup innehåller
 
 export interface MyRegistrations {
     upcoming: Meetup[];
-    past: [];
+    past: Meetup[];
 }
