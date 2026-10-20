@@ -1,9 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer, { TOKEN_KEY } from "./authSlice";
 
 export const store = configureStore({
-	reducer: {
-        // Add reducers from slices here
-	}
+    reducer: {
+        auth: authReducer,
+    },
+});
+//sparar tokenen så att man är inloggad även efter omladdning
+store.subscribe(() => {
+    const token = store.getState().auth.token;
+    if (token) localStorage.setItem(TOKEN_KEY, token);
+    else localStorage.removeItem(TOKEN_KEY);
 });
 
 //Just some typeScript-bullshit
