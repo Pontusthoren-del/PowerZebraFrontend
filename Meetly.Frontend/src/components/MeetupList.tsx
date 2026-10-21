@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMeetups } from "../hooks/useMeetups";
+import { useAppSelector } from "../store/hooks";
 import type { MeetupFilters } from "../types/Meetup";
 import MeetupCard from "./MeetupCard";
 import SearchBar from "./SearchBar";
@@ -15,6 +16,10 @@ export default function MeetupList() {
         to: "",
     });
     const { meetups, loading, error } = useMeetups(filters);
+
+    // Mina anmälningar finns redan i store (hämtas av hälsningsrutan)
+    const myUpcoming = useAppSelector((s) => s.registrations.upcoming);
+    const registeredIds = new Set(myUpcoming.map((m) => m.id));
 
     return (
         <>
@@ -38,7 +43,11 @@ export default function MeetupList() {
 
             <section className="meetup-list">
                 {meetups.map((meetup) => (
-                    <MeetupCard key={meetup.id} meetup={meetup} />
+                    <MeetupCard
+                        key={meetup.id}
+                        meetup={meetup}
+                        registered={registeredIds.has(meetup.id)}
+                    />
                 ))}
             </section>
         </>
