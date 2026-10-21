@@ -102,7 +102,9 @@
     color: var(--muted);
 }
 
-.meetup-registration-action { position: relative; }  /* bubblorna utgår från knappen */
+.meetup-registration-action {
+    position: relative;
+} /* bubblorna utgår från knappen */
 
 .meetup-registration-button {
     width: 100%;
@@ -113,7 +115,7 @@
     color: #fff;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: background 0.35s ease, transform 0.3s ease;
 }
 
 .meetup-registration-button:hover:not(:disabled) {
@@ -128,13 +130,18 @@ a.meetup-registration-button {
 }
 
 /* Anmäld: knappen blir röd och används för att avanmäla */
+/* Anmäld: lugn knapp med röd text, blir ljusröd vid hover */
 .meetup-registration-button-unregister {
-    background: var(--danger);
+    background: #f76159;
+    color: #fff;
+    transition:
+        background 0.2s,
+        transform 0.2s;
 }
 
 .meetup-registration-button-unregister:hover:not(:disabled) {
-    background: var(--danger);
-    filter: brightness(0.9);
+    background: #b91f17;
+    transform: translateY(-1px);
 }
 
 .meetup-registration-button:disabled {
@@ -175,15 +182,29 @@ a.meetup-registration-button {
 }
 
 .meetup-confirm-keep {
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: inherit;
+    border: 1px solid transparent;
+    background: #e3f4e8;
+    color: var(--success);
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+.meetup-confirm-keep:hover {
+    background: #d2eddb;
+    transform: translateY(-1px);
 }
 
 .meetup-confirm-yes {
-    border: 0;
-    background: var(--danger);
+    border: 1px solid transparent;
+    background: #d9281e;
     color: #fff;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+.meetup-confirm-yes:hover {
+    background: #b91f17;
+    transform: translateY(-1px);
 }
 
 @media (max-width: 720px) {
