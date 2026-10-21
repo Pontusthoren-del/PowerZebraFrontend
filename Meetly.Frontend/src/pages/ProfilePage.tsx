@@ -54,7 +54,7 @@ export default function ProfilePage() {
         {past.length > 0 ? (
           <div className="profile-meetups-list">
             {past.map((meetup) => (
-              <MeetupCard key={meetup.id} meetup={meetup} />
+              <MeetupCard key={meetup.id} meetup={meetup} showSpots={false} />
             ))}
           </div>
         ) : (

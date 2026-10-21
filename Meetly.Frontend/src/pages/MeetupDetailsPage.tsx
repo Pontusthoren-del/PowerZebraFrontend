@@ -39,6 +39,8 @@ export default function MeetupDetailsPage() {
     }
 
     const startTime = new Date(meetup.startTime);
+    // Passerad meetup: anmälan är stängd
+    const isPast = startTime < new Date();
 
     return (
         <main className="meetup-details">
@@ -98,11 +100,11 @@ export default function MeetupDetailsPage() {
                 </article>
 
                 <section className="meetup-registration-card">
-                    <h2 className="meetup-registration-title">Anmäl dig</h2>
+                    <h2 className="meetup-registration-title">{isPast ? "Anmälan stängd" : "Anmäl dig"}</h2>
                     <p className="meetup-registration-description">
-                        Anmäl dig till mötet med ditt konto.
+                        {isPast ? "Meetupen har passerat" : "Anmäl dig till mötet med ditt konto."}
                     </p>
-                    {isLoggedIn ? (
+                    {isPast ? null : isLoggedIn ? (
                         <div className="meetup-registration-action">
                             <button
                                 className={`meetup-registration-button${registered ? " meetup-registration-button-unregister" : ""}`}
@@ -140,7 +142,7 @@ export default function MeetupDetailsPage() {
                         role="status"
                         aria-live="polite"
                     >
-                        {message || (registered ? "✓ Du är anmäld" : "")}
+                        {isPast ? "" : message || (registered ? "✓ Du är anmäld" : "")}
                     </p>
                 </section>
             </div>

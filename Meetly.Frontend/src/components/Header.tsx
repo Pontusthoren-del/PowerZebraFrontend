@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { logout } from "../store/authSlice";
 import Modal from "./Modal";
@@ -9,7 +9,13 @@ import "./styles/Header.css";
 export default function Header() {
   const user = useAppSelector((s) => s.auth.user);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   return (
     <header className="header">
@@ -31,7 +37,7 @@ export default function Header() {
                   Mina möten
                 </NavLink>
               </div>
-              <button type="button" className="nav-link nav-logout" onClick={() => dispatch(logout())}>
+              <button type="button" className="nav-link nav-logout" onClick={handleLogout}>
                 Logga ut
               </button>
             </>
