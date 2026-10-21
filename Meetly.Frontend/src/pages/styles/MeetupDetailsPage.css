@@ -132,8 +132,8 @@ a.meetup-registration-button {
 /* Anmäld: knappen blir röd och används för att avanmäla */
 /* Anmäld: lugn knapp med röd text, blir ljusröd vid hover */
 .meetup-registration-button-unregister {
-    background: #f76159;
-    color: #fff;
+    background: #fd564e;
+    color: #000000;
     transition:
         background 0.2s,
         transform 0.2s;
@@ -197,7 +197,7 @@ a.meetup-registration-button {
 .meetup-confirm-yes {
     border: 1px solid transparent;
     background: #d9281e;
-    color: #fff;
+    color: #020202;
     transition:
         background 0.2s,
         transform 0.2s;
