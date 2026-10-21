@@ -16,9 +16,11 @@ interface MeetupCardProps {
         registeredCount: number;
         availableSpots: number;
     };
+    // Dölj "Lediga platser" för möten som redan varit
+    showSpots?: boolean;
 }
 
-export default function MeetupCard({ meetup }: MeetupCardProps) {
+export default function MeetupCard({ meetup, showSpots = true }: MeetupCardProps) {
     return (
         <div className="meetup-card">
             <div className="meetup-card-header">
@@ -34,6 +36,7 @@ export default function MeetupCard({ meetup }: MeetupCardProps) {
                         minute: "2-digit",
                     })}
                 </p>
+                {showSpots && (
                 <p
                     className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
                 >
@@ -41,6 +44,7 @@ export default function MeetupCard({ meetup }: MeetupCardProps) {
                         ? "Fullbokat"
                         : `Lediga platser: ${meetup.availableSpots}`}
                 </p>
+                )}
             </div>
             <h3 className="meetup-card-title">{meetup.title}</h3>
             {/* Ikonerna är bara dekor, texten säger vad det är */}
