@@ -17,13 +17,12 @@ interface MeetupCardProps {
         availableSpots: number;
     };
     registered?: boolean;
-  // Dölj "Lediga platser" för möten som redan varit
+    // Dölj "Lediga platser" för möten som redan varit
     showSpots?: boolean;
-
 }
 
 export default function MeetupCard({ meetup, registered, showSpots = true }: MeetupCardProps) {
-  return (
+    return (
         <div className={`meetup-card${registered ? " meetup-card-is-registered" : ""}`}>
             <div className="meetup-card-header">
                 <p className="meetup-card-time">
@@ -38,17 +37,19 @@ export default function MeetupCard({ meetup, registered, showSpots = true }: Mee
                         minute: "2-digit",
                     })}
                 </p>
-                {/* Anmäld: visa det i stället för antal platser */}
-                {!showSpots ? null : registered ? (
+                {/* Anmäld: visa det i stället för antal platser. Möten som varit visar inga platser */}
+                {registered ? (
                     <p className="meetup-card-registered">✓ Du är anmäld</p>
                 ) : (
-                    <p
-                        className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
-                    >
-                        {meetup.availableSpots <= 0
-                            ? "Fullbokat"
-                            : `Lediga platser: ${meetup.availableSpots}`}
-                    </p>
+                    showSpots && (
+                        <p
+                            className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
+                        >
+                            {meetup.availableSpots <= 0
+                                ? "Fullbokat"
+                                : `Lediga platser: ${meetup.availableSpots}`}
+                        </p>
+                    )
                 )}
             </div>
             <h3 className="meetup-card-title">{meetup.title}</h3>

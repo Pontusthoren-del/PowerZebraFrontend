@@ -158,20 +158,20 @@ h3,
 
 /* ---------- Knappar & Formulär (från Bild 4 & 5) ---------- */
 .btn-primary {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px 20px;
-    background: var(--accent);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 15px;
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
 }
 .btn-primary:hover {
   background: var(--accent-hover);
@@ -216,12 +216,12 @@ button,
 .nav-link,
 .meetup-card-button,
 .meetup-registration-button {
-    transition:
-        background-color 0.35s ease,
-        color 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        transform 0.3s ease;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.3s ease;
 }
 button:hover:not(:disabled),
 .btn-primary:hover,
@@ -229,5 +229,5 @@ button:hover:not(:disabled),
 .nav-link:hover,
 .meetup-card-button:hover,
 .meetup-registration-button:hover:not(:disabled) {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }

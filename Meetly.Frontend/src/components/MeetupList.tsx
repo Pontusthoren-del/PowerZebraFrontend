@@ -17,13 +17,13 @@ export default function MeetupList() {
   });
   const { meetups, loading, error } = useMeetups(filters);
 
-    // Mina anmälningar finns redan i store (hämtas av hälsningsrutan)
-    const myUpcoming = useAppSelector((s) => s.registrations.upcoming);
-    const registeredIds = new Set(myUpcoming.map((m) => m.id));
+  // Mina anmälningar finns redan i store (hämtas av hälsningsrutan)
+  const myUpcoming = useAppSelector((s) => s.registrations.upcoming);
+  const registeredIds = new Set(myUpcoming.map((m) => m.id));
 
-    return (
-        <>
-            <h1 className="home-title">Kommande meetups</h1>
+  return (
+    <>
+      <h1 className="home-title">Kommande meetups</h1>
 
       {/* Filter och sök på samma rad */}
       <div className="meetup-filters">
@@ -41,15 +41,17 @@ export default function MeetupList() {
         <p className="home-empty">Inga meetups matchar dina filter.</p>
       )}
 
-            <section className="meetup-list">
-                {meetups.map((meetup) => (
-                    <MeetupCard
-                        key={meetup.id}
-                        meetup={meetup}
-                        registered={registeredIds.has(meetup.id)}
-                    />
-                ))}
-            </section>
-        </>
-    );
+      <section
+        className={`meetup-list${loading ? " meetup-list-loading" : ""}`}
+      >
+        {meetups.map((meetup) => (
+          <MeetupCard
+            key={meetup.id}
+            meetup={meetup}
+            registered={registeredIds.has(meetup.id)}
+          />
+        ))}
+      </section>
+    </>
+  );
 }
