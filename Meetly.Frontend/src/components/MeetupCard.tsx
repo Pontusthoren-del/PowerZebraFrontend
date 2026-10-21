@@ -16,11 +16,13 @@ interface MeetupCardProps {
         registeredCount: number;
         availableSpots: number;
     };
-    registered?: boolean;
+    showSpots?: boolean;  
+  // Dölj "Lediga platser" för möten som redan varit
+    
 }
 
-export default function MeetupCard({ meetup, registered }: MeetupCardProps) {
-    return (
+export default function MeetupCard({ meetup, registered, showSpots = true }: MeetupCardProps) {
+  return (
         <div className={`meetup-card${registered ? " meetup-card-is-registered" : ""}`}>
             <div className="meetup-card-header">
                 <p className="meetup-card-time">
@@ -36,7 +38,7 @@ export default function MeetupCard({ meetup, registered }: MeetupCardProps) {
                     })}
                 </p>
                 {/* Anmäld: visa det i stället för antal platser */}
-                {registered ? (
+                {!showSpots ? null : registered ? (
                     <p className="meetup-card-registered">✓ Du är anmäld</p>
                 ) : (
                     <p
