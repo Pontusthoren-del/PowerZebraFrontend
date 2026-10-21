@@ -72,7 +72,7 @@ export default function WelcomeHero() {
       </div>
 
       <h1 className="hero-logo">
-        Meetly <span className="header-logo-dot">.</span>
+        Meetly<span className="header-logo-dot" aria-hidden="true" />
       </h1>
       <p className="hero-text">
         Hitta din nästa meetup på västkusten – teknik, sport, mat och mycket

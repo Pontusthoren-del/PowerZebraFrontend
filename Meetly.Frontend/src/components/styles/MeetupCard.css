@@ -36,6 +36,20 @@
     color: var(--danger);
 }
 
+/* Anmäld: grön badge och svag grön kant runt kortet */
+.meetup-card-registered {
+    margin: 0;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #e3f4e8;
+    color: var(--success);
+    font-size: 13px;
+    font-weight: 600;
+}
+.meetup-card-is-registered {
+    border-color: #b9dec5;
+}
+
 .meetup-card-title {
     margin: 0 0 12px 0;
     font-size: 20px;
@@ -80,7 +94,6 @@
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: background 0.15s ease;
 }
 
 .meetup-card-button:hover {

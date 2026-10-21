@@ -35,9 +35,7 @@
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s;
 }
-.hero-button:hover { transform: translateY(-1px); }
 .hero-button-primary {
     background: var(--fresh-text);
     color: #FFFFFF;
@@ -60,6 +58,7 @@
 }
 .hero-full {
     flex: 1;
+    min-height: calc(100vh - 140px); /* fyller första skärmen, listan börjar under */
     display: flex;
     flex-direction: column;
     justify-content: center;

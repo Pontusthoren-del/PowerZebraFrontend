@@ -1,15 +1,20 @@
 /* Ljusblå header som tonar ut nedåt i stället för en skarp kant */
 .header {
     position: relative;
-    z-index: 1;                    /* ligger över prickarna */
-    background: linear-gradient(180deg, var(--sky-deep) 0%, var(--sky-deep) 45%, transparent 100%);
+    z-index: 1; /* ligger över prickarna */
+    background: linear-gradient(
+        180deg,
+        var(--sky-deep) 0%,
+        var(--sky-deep) 45%,
+        transparent 100%
+    );
 }
 .header-inner {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 16px 24px 32px;       /* extra luft nertill för tonen */
+    padding: 16px 24px 32px; /* extra luft nertill för tonen */
     display: flex;
-    flex-wrap: wrap;               /* på mobil hamnar menyn under loggan */
+    flex-wrap: wrap; /* på mobil hamnar menyn under loggan */
     align-items: center;
     justify-content: space-between;
     gap: 12px;
@@ -21,43 +26,80 @@
     text-decoration: none;
     letter-spacing: -0.02em;
 }
-.header-logo-dot { color: var(--accent); }  /* används även i välkomstskärmens logga */
+.header-logo-dot {
+    /* rund prick, mäts i em så den växer med loggan */
+    display: inline-block;
+    width: 0.2em;
+    height: 0.2em;
+    margin-left: 0.06em;
+    border-radius: 50%;
+    background: var(--accent);
+}
 
 .header-nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 .nav-link {
-    padding: 10px 16px;
+    padding: 8px 16px;
     border-radius: var(--radius-md);
     font-weight: 600;
     font-size: 15px;
-    color: var(--text);
+    color: var(--muted);
     text-decoration: none;
-    transition: background 0.15s ease;
 }
-.nav-link:hover { background: rgba(31, 35, 40, 0.05); }
-.nav-link.active { background: rgba(31, 35, 40, 0.07); }  /* sidan man är på */
+.nav-link:hover {
+    background: var(--bg);
+    color: var(--text);
+}
 
-button.nav-link {                           /* knappar ser ut som länkarna */
+/* Meetups + Mina möten: en vit "flikrad" där sidan man är på är blå */
+.nav-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+.nav-tabs .nav-link.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* Logga ut: vit knapp i samma höjd som flikraden */
+.nav-logout {
+    padding: 12px 16px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow:
+        inset 0 0 0 1px var(--border),
+        var(--shadow-sm);
+}
+.nav-logout:hover {
+    background: var(--bg);
+}
+
+button.nav-link {
+    /* knappar ser ut som länkarna */
     border: none;
     font: inherit;
+    font-weight: 600;
     cursor: pointer;
 }
 
 /* Logga in / Logga ut: blå knapp, samma som Logga in på startsidan */
 .nav-soft {
+    padding: 12px 16px;
     background: var(--fresh-text);
-    color: #FFFFFF;
+    color: #ffffff;
     box-shadow: 0 2px 8px rgba(31, 35, 40, 0.12);
 }
-.nav-soft:hover { background: var(--accent-hover); }
-.nav-user {                                 /* namnet när man är inloggad */
-    padding: 10px 16px;
-    font-weight: 600;
-    color: var(--muted);
+.nav-soft:hover {
+    background: var(--accent-hover);
 }
 
 /* Äldre knappstilar – används inte just nu */
@@ -65,12 +107,16 @@ button.nav-link {                           /* knappar ser ut som länkarna */
     color: var(--accent);
     border: 1.5px solid var(--accent);
 }
-.nav-outline:hover { background: var(--accent-soft); }
+.nav-outline:hover {
+    background: var(--accent-soft);
+}
 .nav-primary {
-    color: #FFFFFF;
+    color: #ffffff;
     background: var(--accent);
 }
-.nav-primary:hover { background: var(--accent-hover); }
+.nav-primary:hover {
+    background: var(--accent-hover);
+}
 .nav-button {
     padding: 10px 16px;
     border: none;
@@ -81,4 +127,23 @@ button.nav-link {                           /* knappar ser ut som länkarna */
     color: var(--muted);
     cursor: pointer;
 }
-.nav-button:hover { background: var(--bg); color: var(--text); }
+.nav-button:hover {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Mobil: alla knappar på en rad under loggan */
+@media (max-width: 600px) {
+    .header-nav {
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    .nav-logout,
+    .nav-soft {
+        padding: 12px 12px;
+    }
+}
