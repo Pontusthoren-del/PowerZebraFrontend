@@ -38,8 +38,8 @@
     text-decoration: none;
     transition: background 0.15s ease;
 }
-.nav-link:hover { background: rgba(255, 255, 255, 0.6); }
-.nav-link.active { background: rgba(255, 255, 255, 0.8); }  /* sidan man är på */
+.nav-link:hover { background: rgba(31, 35, 40, 0.05); }
+.nav-link.active { background: rgba(31, 35, 40, 0.07); }  /* sidan man är på */
 
 button.nav-link {                           /* knappar ser ut som länkarna */
     border: none;
@@ -51,9 +51,9 @@ button.nav-link {                           /* knappar ser ut som länkarna */
 .nav-soft {
     background: var(--fresh-text);
     color: #FFFFFF;
-    box-shadow: 0 2px 8px rgba(22, 96, 189, 0.2);
+    box-shadow: 0 2px 8px rgba(31, 35, 40, 0.12);
 }
-.nav-soft:hover { background: #12519E; }
+.nav-soft:hover { background: var(--accent-hover); }
 .nav-user {                                 /* namnet när man är inloggad */
     padding: 10px 16px;
     font-weight: 600;

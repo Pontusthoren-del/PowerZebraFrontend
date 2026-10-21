@@ -3,37 +3,41 @@
 :root {
     --font-main: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 
-    --bg: #f3f5f9; /* bakgrund */
-    --surface: #ffffff; /* kort, header */
-    --text: #14171f; /* mörk text */
-    --muted: #5a6275; /* grå text (Värd, Plats, underrubriker) */
-    --border: #e1e5ee; /* linjer och input-ramar */
+    /* Lugn bas – den starka färgen sparas till det man ska klicka på */
+    --bg: #F0F4F9; /* hover-ytor, ljust blågrå */
+    --surface: #FFFFFF; /* kort och rutor */
+    --text: #1F2328; /* mörk text, lite mjukare än svart */
+    --muted: #686D76; /* grå text (Värd, Plats, underrubriker) */
+    --border: #E2E8F0; /* linjer och input-ramar */
 
-    --accent: #2146c7; /* klarblå (knappar, logga-punkt, länkar) */
-    --accent-hover: #18359e; /* mörkare blå vid hover */
-    --accent-soft: #eef2ff; /* ljusblå (datum-taggar) */
+    --accent: #3A5BA0; /* dämpad blå (knappar, logga-punkt, länkar) */
+    --accent-hover: #2E4A85; /* mörkare blå vid hover */
+    --accent-soft: #ECF0F7; /* ljusblå (datum-taggar) */
 
-    --success: #1f6e43; /* grön text ("15 platser kvar") */
-    --danger: #b91c1c; /* röd text ("Fullbokad") */
-    --danger-soft: #fee2e2; /* ljusröd bakgrund vid behov */
+    --success: #2F6B4A; /* grön text ("15 platser kvar") */
+    --danger: #B42318; /* röd text ("Fullbokad") */
+    --danger-soft: #FCE8E6; /* ljusröd bakgrund vid behov */
 
     --radius-md: 10px; /* knappar, inputs */
     --radius-lg: 16px; /* meetup-kort, formulär-boxar */
-    --shadow-sm: 0 2px 8px rgba(20, 23, 31, 0.05);
+    --shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.04), 0 4px 12px rgba(31, 35, 40, 0.04);
 
-    /* Ljusblå "fresh"-toner för välkomst, inloggning och knappar */
-    --fresh: #E3F1FF;         /* ljusblå knapp */
-    --fresh-hover: #CFE6FF;   /* lite mörkare vid hover */
-    --fresh-text: #1660BD;    /* blå text på ljusblått (mörk nog för att vara lättläst) */
-    --fresh-strong: #B9DBFF;  /* lite starkare ljusblå, till prickarna */
-    --fresh-bg: #F2F8FF;      /* svag ljusblå bakgrund */
-    --fresh-border: #DCEBFB;  /* ljusblå kant */
+    /* Mjuka toner för välkomst, inloggning och knappar – samma blå som accent */
+    --fresh: #ECF0F7;         /* ljus knapp */
+    --fresh-hover: #E0E6F1;   /* lite mörkare vid hover */
+    --fresh-text: var(--accent);
+    --fresh-strong: #CFE1F6;  /* prickarna */
+    --fresh-bg: #F5F9FE;      /* svag bakgrund */
+    --fresh-border: var(--border);
 
-    /* Himmelsblå bakgrund för hela sidan */
-    --sky: #D6EAFC;           /* sidans bakgrund */
-    --sky-deep: #EDF6FF;      /* header och footer (ljusare än sidan) */
-    --sky-dot: #A8CDF1;       /* blå prickar */
-    --sky-dot-light: rgba(255, 255, 255, 0.6);  /* vita prickar */
+    /* Sidans bakgrund */
+    --sky: #F3F8FE;           /* reservfärg om gradienten inte laddar */
+    --sky-deep: #FFFFFF;      /* headern, smälter ihop med gradientens topp */
+    --sky-dot: #DCE9F8;       /* ljusblå prickar */
+    --sky-dot-light: rgba(255, 255, 255, 0.8);  /* vita prickar */
+
+    /* Gradient från vitt uppe till ljusblått nere */
+    --sky-gradient: linear-gradient(180deg, #FFFFFF 0%, #F3F8FE 45%, #DCEBFA 100%);
 }
 
 *,
@@ -44,7 +48,8 @@
 
 body {
     margin: 0;
-    background: var(--sky);
+    min-height: 100vh;
+    background: var(--sky) var(--sky-gradient) fixed;  /* fixed: gradienten följer inte med vid scroll */
     color: var(--text);
     font-family: var(--font-main);
     font-weight: 400;
@@ -187,7 +192,7 @@ h3,
     font-size: 15px;
 }
 .form-input::placeholder {
-    color: #8c94a6;
+    color: #9A9EA6;
 }
 .form-input:focus {
     outline: none;
