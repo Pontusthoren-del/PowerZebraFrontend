@@ -9,4 +9,5 @@
     padding: 32px 24px 20px;       /* extra luft upptill för tonen */
     font-size: 14px;
     color: var(--muted);
+    text-align: center;
 }
