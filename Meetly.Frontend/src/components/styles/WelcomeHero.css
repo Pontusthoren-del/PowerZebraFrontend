@@ -35,9 +35,7 @@
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s;
 }
-.hero-button:hover { transform: translateY(-1px); }
 .hero-button-primary {
     background: var(--fresh-text);
     color: #FFFFFF;

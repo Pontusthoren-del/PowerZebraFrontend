@@ -166,7 +166,6 @@ h3,
     border-radius: var(--radius-md);
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.15s ease;
 }
 .btn-primary:hover {
     background: var(--accent-hover);
@@ -198,4 +197,27 @@ h3,
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---------- Knappar: mjuk övergång på alla knappar ---------- */
+button,
+.btn-primary,
+.hero-button,
+.nav-link,
+.meetup-card-button,
+.meetup-registration-button {
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.3s ease;
+}
+button:hover:not(:disabled),
+.btn-primary:hover,
+.hero-button:hover,
+.nav-link:hover,
+.meetup-card-button:hover,
+.meetup-registration-button:hover:not(:disabled) {
+    transform: scale(1.05);
 }
