@@ -102,6 +102,8 @@
     color: var(--muted);
 }
 
+.meetup-registration-action { position: relative; }  /* bubblorna utgår från knappen */
+
 .meetup-registration-button {
     width: 100%;
     padding: 0.75rem 1rem;

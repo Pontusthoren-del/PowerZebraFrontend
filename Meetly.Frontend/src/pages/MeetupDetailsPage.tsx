@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getMeetupById } from "../api/meetups";
+import Bubbles from "../components/Bubbles";
 import Modal from "../components/Modal";
 import { useMeetup } from "../hooks/useMeetup";
 import { useRegistration } from "../hooks/useRegistration";
@@ -10,13 +11,17 @@ export default function MeetupDetailsPage() {
     const { id } = useParams();
     const { meetup, setMeetup, loading, error } = useMeetup(Number(id));
     const [confirmOpen, setConfirmOpen] = useState(false);
+    // Räknas upp vid varje lyckad anmälan så att bubblorna startar om
+    const [bubbleBurst, setBubbleBurst] = useState(0);
     const { toggle, registered, status, message, isLoggedIn } = useRegistration(
         Number(id),
         // 201: uppdatera "X av Y platser" med siffrorna från svaret
-        (c) =>
+        (c) => {
             setMeetup((m) =>
                 m ? { ...m, registeredCount: c.registeredCount, availableSpots: c.availableSpots } : m,
-            ),
+            );
+            setBubbleBurst((n) => n + 1);
+        },
         // Efter fel eller avanmälan: hämta om meetupen så att platserna stämmer
         () => {
             getMeetupById(Number(id))
@@ -98,23 +103,26 @@ export default function MeetupDetailsPage() {
                         Anmäl dig till mötet med ditt konto.
                     </p>
                     {isLoggedIn ? (
-                        <button
-                            className={`meetup-registration-button${registered ? " meetup-registration-button-unregister" : ""}`}
-                            type="button"
-                            onClick={registered ? () => setConfirmOpen(true) : toggle}
-                            disabled={
-                                status === "loading" ||
-                                (!registered && meetup.availableSpots <= 0)
-                            }
-                        >
-                            {status === "loading"
-                                ? "Vänta..."
-                                : registered
-                                  ? "Avanmäl mig"
-                                  : meetup.availableSpots <= 0
-                                    ? "Fullbokat"
-                                    : "Anmäl mig"}
-                        </button>
+                        <div className="meetup-registration-action">
+                            <button
+                                className={`meetup-registration-button${registered ? " meetup-registration-button-unregister" : ""}`}
+                                type="button"
+                                onClick={registered ? () => setConfirmOpen(true) : toggle}
+                                disabled={
+                                    status === "loading" ||
+                                    (!registered && meetup.availableSpots <= 0)
+                                }
+                            >
+                                {status === "loading"
+                                    ? "Vänta..."
+                                    : registered
+                                      ? "Avanmäl mig"
+                                      : meetup.availableSpots <= 0
+                                        ? "Fullbokat"
+                                        : "Anmäl mig"}
+                            </button>
+                            {bubbleBurst > 0 && <Bubbles key={bubbleBurst} />}
+                        </div>
                     ) : (
                         <Link to="/login" className="meetup-registration-button">
                             Logga in för att anmäla dig
