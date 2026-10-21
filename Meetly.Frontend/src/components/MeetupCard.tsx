@@ -16,9 +16,10 @@ interface MeetupCardProps {
         registeredCount: number;
         availableSpots: number;
     };
-    showSpots?: boolean;  
+    registered?: boolean;
   // Dölj "Lediga platser" för möten som redan varit
-    
+    showSpots?: boolean;
+
 }
 
 export default function MeetupCard({ meetup, registered, showSpots = true }: MeetupCardProps) {
