@@ -9,6 +9,7 @@ interface AuthState {
     user: CurrentUser | null;
     status: "idle" | "loading" | "failed";
     error: string | null;
+    serverDown: boolean;
 }
 
 const initialState: AuthState = {
@@ -16,6 +17,7 @@ const initialState: AuthState = {
     user: null,
     status: "idle",
     error: null,
+    serverDown: false,
 };
 
 // Loggar in och hämtar användaren i samma steg
@@ -60,11 +62,17 @@ const authSlice = createSlice({
             })
             .addCase(restoreSession.fulfilled, (state, action) => {
                 state.user = action.payload;
+                state.serverDown = false;
             })
-            .addCase(restoreSession.rejected, (state) => {
-                // Tokenen har gått ut
-                state.token = null;
-                state.user = null;
+            .addCase(restoreSession.rejected, (state, action) => {
+                if (action.error.message === "unauthorized")
+                {
+                    // Tokenen har gått ut
+                    state.token = null;
+                    state.user = null;
+                } else {
+                    state.serverDown = true;
+                }
             });
     },
 });
