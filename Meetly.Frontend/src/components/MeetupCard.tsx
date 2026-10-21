@@ -16,13 +16,15 @@ interface MeetupCardProps {
         registeredCount: number;
         availableSpots: number;
     };
-    // Dölj "Lediga platser" för möten som redan varit
+    registered?: boolean;
+  // Dölj "Lediga platser" för möten som redan varit
     showSpots?: boolean;
+
 }
 
-export default function MeetupCard({ meetup, showSpots = true }: MeetupCardProps) {
-    return (
-        <div className="meetup-card">
+export default function MeetupCard({ meetup, registered, showSpots = true }: MeetupCardProps) {
+  return (
+        <div className={`meetup-card${registered ? " meetup-card-is-registered" : ""}`}>
             <div className="meetup-card-header">
                 <p className="meetup-card-time">
                     {new Date(meetup.startTime).toLocaleDateString("sv-SE", {
@@ -36,14 +38,17 @@ export default function MeetupCard({ meetup, showSpots = true }: MeetupCardProps
                         minute: "2-digit",
                     })}
                 </p>
-                {showSpots && (
-                <p
-                    className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
-                >
-                    {meetup.availableSpots <= 0
-                        ? "Fullbokat"
-                        : `Lediga platser: ${meetup.availableSpots}`}
-                </p>
+                {/* Anmäld: visa det i stället för antal platser */}
+                {!showSpots ? null : registered ? (
+                    <p className="meetup-card-registered">✓ Du är anmäld</p>
+                ) : (
+                    <p
+                        className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
+                    >
+                        {meetup.availableSpots <= 0
+                            ? "Fullbokat"
+                            : `Lediga platser: ${meetup.availableSpots}`}
+                    </p>
                 )}
             </div>
             <h3 className="meetup-card-title">{meetup.title}</h3>
