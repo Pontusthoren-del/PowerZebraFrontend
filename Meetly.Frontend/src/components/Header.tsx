@@ -18,17 +18,20 @@ export default function Header() {
           Meetly<span className="header-logo-dot" aria-hidden="true" />
         </Link>
 
-        <nav className="header-nav">
-          {/* Inloggad: Meetups, namn och Logga ut. Utloggad: bara Logga in (Skapa konto finns på startsidan) */}
+        <nav className="header-nav" aria-label="Huvudmeny">
+          {/* Inloggad: Meetups, Mina möten och Logga ut. Utloggad: bara Logga in (Skapa konto finns på startsidan) */}
           {user ? (
             <>
-              <NavLink to="/" end className="nav-link">
-                Meetups
-              </NavLink>
-              <NavLink to="/profile" className="nav-link nav-user">
-                {user.firstName}
-              </NavLink>
-              <button type="button" className="nav-link nav-soft" onClick={() => dispatch(logout())}>
+              {/* Sidorna ligger ihop i en grupp, den man är på markeras */}
+              <div className="nav-tabs">
+                <NavLink to="/" end className="nav-link">
+                  Meetups
+                </NavLink>
+                <NavLink to="/profile" className="nav-link">
+                  Mina möten
+                </NavLink>
+              </div>
+              <button type="button" className="nav-link nav-logout" onClick={() => dispatch(logout())}>
                 Logga ut
               </button>
             </>
