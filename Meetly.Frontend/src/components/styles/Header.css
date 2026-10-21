@@ -1,15 +1,20 @@
 /* Ljusblå header som tonar ut nedåt i stället för en skarp kant */
 .header {
     position: relative;
-    z-index: 1;                    /* ligger över prickarna */
-    background: linear-gradient(180deg, var(--sky-deep) 0%, var(--sky-deep) 45%, transparent 100%);
+    z-index: 1; /* ligger över prickarna */
+    background: linear-gradient(
+        180deg,
+        var(--sky-deep) 0%,
+        var(--sky-deep) 45%,
+        transparent 100%
+    );
 }
 .header-inner {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 16px 24px 32px;       /* extra luft nertill för tonen */
+    padding: 16px 24px 32px; /* extra luft nertill för tonen */
     display: flex;
-    flex-wrap: wrap;               /* på mobil hamnar menyn under loggan */
+    flex-wrap: wrap; /* på mobil hamnar menyn under loggan */
     align-items: center;
     justify-content: space-between;
     gap: 12px;
@@ -21,7 +26,15 @@
     text-decoration: none;
     letter-spacing: -0.02em;
 }
-.header-logo-dot { color: var(--accent); }  /* används även i välkomstskärmens logga */
+.header-logo-dot {
+    /* rund prick, mäts i em så den växer med loggan */
+    display: inline-block;
+    width: 0.2em;
+    height: 0.2em;
+    margin-left: 0.06em;
+    border-radius: 50%;
+    background: var(--accent);
+}
 
 .header-nav {
     display: flex;
@@ -38,10 +51,15 @@
     text-decoration: none;
     transition: background 0.15s ease;
 }
-.nav-link:hover { background: rgba(31, 35, 40, 0.05); }
-.nav-link.active { background: rgba(31, 35, 40, 0.07); }  /* sidan man är på */
+.nav-link:hover {
+    background: rgba(31, 35, 40, 0.05);
+}
+.nav-link.active {
+    background: rgba(31, 35, 40, 0.07);
+} /* sidan man är på */
 
-button.nav-link {                           /* knappar ser ut som länkarna */
+button.nav-link {
+    /* knappar ser ut som länkarna */
     border: none;
     font: inherit;
     cursor: pointer;
@@ -50,11 +68,14 @@ button.nav-link {                           /* knappar ser ut som länkarna */
 /* Logga in / Logga ut: blå knapp, samma som Logga in på startsidan */
 .nav-soft {
     background: var(--fresh-text);
-    color: #FFFFFF;
+    color: #ffffff;
     box-shadow: 0 2px 8px rgba(31, 35, 40, 0.12);
 }
-.nav-soft:hover { background: var(--accent-hover); }
-.nav-user {                                 /* namnet när man är inloggad */
+.nav-soft:hover {
+    background: var(--accent-hover);
+}
+.nav-user {
+    /* namnet när man är inloggad */
     padding: 10px 16px;
     font-weight: 600;
     color: var(--muted);
@@ -65,12 +86,16 @@ button.nav-link {                           /* knappar ser ut som länkarna */
     color: var(--accent);
     border: 1.5px solid var(--accent);
 }
-.nav-outline:hover { background: var(--accent-soft); }
+.nav-outline:hover {
+    background: var(--accent-soft);
+}
 .nav-primary {
-    color: #FFFFFF;
+    color: #ffffff;
     background: var(--accent);
 }
-.nav-primary:hover { background: var(--accent-hover); }
+.nav-primary:hover {
+    background: var(--accent-hover);
+}
 .nav-button {
     padding: 10px 16px;
     border: none;
@@ -81,4 +106,7 @@ button.nav-link {                           /* knappar ser ut som länkarna */
     color: var(--muted);
     cursor: pointer;
 }
-.nav-button:hover { background: var(--bg); color: var(--text); }
+.nav-button:hover {
+    background: var(--bg);
+    color: var(--text);
+}

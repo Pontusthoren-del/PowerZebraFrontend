@@ -15,7 +15,7 @@ export default function Header() {
     <header className="header">
       <div className="header-inner">
         <Link to="/" className="header-logo">
-          Meetly <span className="header-logo-dot">.</span>
+          Meetly<span className="header-logo-dot" aria-hidden="true" />
         </Link>
 
         <nav className="header-nav">

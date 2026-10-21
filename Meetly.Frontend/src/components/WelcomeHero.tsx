@@ -62,10 +62,12 @@ export default function WelcomeHero() {
             </div>
 
             <h1 className="hero-logo">
-                Meetly <span className="header-logo-dot">.</span>
+                Meetly
+                <span className="header-logo-dot" aria-hidden="true" />
             </h1>
             <p className="hero-text">
-                Hitta din nästa meetup på västkusten – teknik, sport, mat och mycket mer.
+                Hitta din nästa meetup på västkusten – teknik, sport, mat och
+                mycket mer.
             </p>
             <div className="hero-actions">
                 <button
@@ -75,13 +77,20 @@ export default function WelcomeHero() {
                 >
                     Logga in
                 </button>
-                <Link to="/register" className="hero-button hero-button-outline">
+                <Link
+                    to="/register"
+                    className="hero-button hero-button-outline"
+                >
                     Skapa konto
                 </Link>
             </div>
 
             {/* Login-modalen öppnas av knappen ovan */}
-            <Modal open={showLogin} onClose={() => setShowLogin(false)} title="Logga in">
+            <Modal
+                open={showLogin}
+                onClose={() => setShowLogin(false)}
+                title="Logga in"
+            >
                 <LoginForm onSuccess={() => setShowLogin(false)} />
                 <p className="modal-footer">
                     Inget konto? <Link to="/register">Skapa ett här</Link>
