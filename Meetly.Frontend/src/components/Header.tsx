@@ -19,7 +19,7 @@ export default function Header() {
         </Link>
 
         <nav className="header-nav" aria-label="Huvudmeny">
-          {/* Inloggad: Meetups, Mina möten och Logga ut. Utloggad: bara Logga in (Skapa konto finns på startsidan) */}
+          {/* Inloggad: Meetups, Mina möten och Logga ut. Utloggad: Meetups och Logga in (Skapa konto finns på startsidan) */}
           {user ? (
             <>
               {/* Sidorna ligger ihop i en grupp, den man är på markeras */}
@@ -36,9 +36,17 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <button type="button" className="nav-link nav-soft" onClick={() => setShowLogin(true)}>
-              Logga in
-            </button>
+            <>
+              {/* Scrollar ner till listan på startsidan */}
+              <div className="nav-tabs">
+                <Link to={{ pathname: "/", hash: "#meetups" }} className="nav-link">
+                  Meetups
+                </Link>
+              </div>
+              <button type="button" className="nav-link nav-soft" onClick={() => setShowLogin(true)}>
+                Logga in
+              </button>
+            </>
           )}
         </nav>
       </div>
