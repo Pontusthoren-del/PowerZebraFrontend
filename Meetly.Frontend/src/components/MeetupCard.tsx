@@ -21,6 +21,10 @@ interface MeetupCardProps {
     showSpots?: boolean;
 }
 
+function summarize(description: string) {
+    const end = description.indexOf(". ");
+    return end === -1 ? description : description.slice(0, end + 1);
+}
 export default function MeetupCard({ meetup, registered, showSpots = true }: MeetupCardProps) {
     return (
         <div className={`meetup-card${registered ? " meetup-card-is-registered" : ""}`}>
@@ -53,6 +57,7 @@ export default function MeetupCard({ meetup, registered, showSpots = true }: Mee
                 )}
             </div>
             <h3 className="meetup-card-title">{meetup.title}</h3>
+            <p className="meetup-card-description">{summarize(meetup.description)}</p>
             {/* Ikonerna är bara dekor, texten säger vad det är */}
             <div className="meetup-card-info-container">
                 <img src={marker} alt="" className="meetup-card-icon" />
