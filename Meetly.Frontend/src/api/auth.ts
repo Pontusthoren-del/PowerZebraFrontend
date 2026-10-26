@@ -39,6 +39,6 @@ export async function getMe(token: string): Promise<CurrentUser> {
     const res = await fetch(`${API_URL}/api/me`, {
         headers: { Authorization: `Bearer ${token}` },
     });
-    if (!res.ok) throw new Error("Inte inloggad.");
+    if (!res.ok) throw new Error(res.status === 401 ? "unauthorized" : "server");
     return res.json();
 }

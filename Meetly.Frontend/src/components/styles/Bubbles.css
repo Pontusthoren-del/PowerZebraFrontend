@@ -1,0 +1,29 @@
+/* Bubblorna ligger över knappen men går inte att klicka på */
+.bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.bubble {
+    position: absolute;
+    bottom: 50%;
+    border-radius: 50%;
+    border: 1.5px solid rgba(58, 91, 160, 0.45);
+    background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #DCEBFA 45%, rgba(207, 225, 246, 0.6) 100%);
+    opacity: 0;
+    animation: bubble-rise 1.3s ease-out forwards;
+}
+
+/* Stiger, guppar lite åt sidan och "spricker" mot slutet */
+@keyframes bubble-rise {
+    0% { opacity: 0; transform: translate(-50%, 0) scale(0.4); }
+    15% { opacity: 1; }
+    80% { opacity: 1; transform: translate(calc(-50% + var(--drift)), var(--rise)) scale(1); }
+    100% { opacity: 0; transform: translate(calc(-50% + var(--drift)), calc(var(--rise) - 10px)) scale(1.3); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bubbles { display: none; }
+}

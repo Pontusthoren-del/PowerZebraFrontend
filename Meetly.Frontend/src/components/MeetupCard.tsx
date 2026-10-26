@@ -16,11 +16,18 @@ interface MeetupCardProps {
         registeredCount: number;
         availableSpots: number;
     };
+    registered?: boolean;
+    // Dölj "Lediga platser" för möten som redan varit
+    showSpots?: boolean;
 }
 
-export default function MeetupCard({ meetup }: MeetupCardProps) {
+function summarize(description: string) {
+    const end = description.indexOf(". ");
+    return end === -1 ? description : description.slice(0, end + 1);
+}
+export default function MeetupCard({ meetup, registered, showSpots = true }: MeetupCardProps) {
     return (
-        <div className="meetup-card">
+        <div className={`meetup-card${registered ? " meetup-card-is-registered" : ""}`}>
             <div className="meetup-card-header">
                 <p className="meetup-card-time">
                     {new Date(meetup.startTime).toLocaleDateString("sv-SE", {
@@ -34,25 +41,30 @@ export default function MeetupCard({ meetup }: MeetupCardProps) {
                         minute: "2-digit",
                     })}
                 </p>
-                <p
-                    className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
-                >
-                    {meetup.availableSpots <= 0
-                        ? "Fullbokat"
-                        : `Lediga platser: ${meetup.availableSpots}`}
-                </p>
+                {/* Anmäld: visa det i stället för antal platser. Möten som varit visar inga platser */}
+                {registered ? (
+                    <p className="meetup-card-registered">✓ Du är anmäld</p>
+                ) : (
+                    showSpots && (
+                        <p
+                            className={`meetup-card-spots${meetup.availableSpots <= 0 ? " meetup-card-spots-full" : ""}`}
+                        >
+                            {meetup.availableSpots <= 0
+                                ? "Fullbokat"
+                                : `Lediga platser: ${meetup.availableSpots}`}
+                        </p>
+                    )
+                )}
             </div>
             <h3 className="meetup-card-title">{meetup.title}</h3>
+            <p className="meetup-card-description">{summarize(meetup.description)}</p>
+            {/* Ikonerna är bara dekor, texten säger vad det är */}
             <div className="meetup-card-info-container">
-                <img src={user} alt="user" className="meetup-card-icon" />
-                <p className="meetup-card-info"> {meetup.location}</p>
+                <img src={marker} alt="" className="meetup-card-icon" />
+                <p className="meetup-card-info">{meetup.location}</p>
             </div>
             <div className="meetup-card-info-container">
-                <img
-                    src={marker}
-                    alt="Location marker"
-                    className="meetup-card-icon"
-                />
+                <img src={user} alt="" className="meetup-card-icon" />
                 <p className="meetup-card-info">{meetup.host}</p>
             </div>
             <Link to={`/meetups/${meetup.id}`}>

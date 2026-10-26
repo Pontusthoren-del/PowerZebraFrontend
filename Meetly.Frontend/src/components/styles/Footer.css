@@ -1,8 +1,7 @@
-/* Samma ljusblå ton som headern, fast tonad uppåt */
+/* Genomskinlig så att sidans gradient syns ända ner */
 .footer {
     position: relative;
     z-index: 1;                    /* ligger över prickarna */
-    background: linear-gradient(0deg, var(--sky-deep) 0%, var(--sky-deep) 45%, transparent 100%);
 }
 .footer-inner {
     max-width: 1120px;
@@ -10,4 +9,5 @@
     padding: 32px 24px 20px;       /* extra luft upptill för tonen */
     font-size: 14px;
     color: var(--muted);
+    text-align: center;
 }

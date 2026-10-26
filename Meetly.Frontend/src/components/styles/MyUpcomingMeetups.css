@@ -1,0 +1,92 @@
+/* De kommande anmälningarna i hälsningsrutan */
+.my-upcoming {
+    margin-top: 16px;
+    text-align: left;
+} /* listan läses bäst vänsterställd */
+
+.my-upcoming-title {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.my-upcoming-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.my-upcoming-list li + li {
+    border-top: 1px solid var(--border);
+} /* tunn linje i stället för egna kort */
+
+.my-upcoming-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 4px;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+.my-upcoming-item:hover {
+    color: var(--accent);
+}
+.my-upcoming-item:hover .my-upcoming-arrow {
+    translate: 3px 0;
+    color: var(--accent);
+}
+
+.my-upcoming-time {
+    flex: 0 0 auto;
+    min-width: 110px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+}
+.my-upcoming-name {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+}
+.my-upcoming-arrow {
+    color: var(--muted);
+    transition: translate 0.15s ease;
+}
+
+/* Fäller ut resten av listan i rutan */
+.my-upcoming-more {
+    display: block;
+    margin: 8px auto 0;
+    padding: 6px 12px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: none;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    cursor: pointer;
+}
+.my-upcoming-more:hover {
+    background: var(--accent-soft);
+}
+
+/* Mobil: tiden ovanför namnet */
+@media (max-width: 600px) {
+    .my-upcoming-item {
+        flex-wrap: wrap;
+        gap: 2px;
+    }
+    .my-upcoming-name {
+        flex-basis: 100%;
+        order: 2;
+    }
+    .my-upcoming-arrow {
+        display: none;
+    }
+}

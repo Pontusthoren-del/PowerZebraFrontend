@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer, { TOKEN_KEY } from "./authSlice";
+import registrationsReducer from "./registrationsSlice";
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
+        registrations: registrationsReducer,
     },
 });
 //sparar tokenen så att man är inloggad även efter omladdning
@@ -13,6 +15,6 @@ store.subscribe(() => {
     else localStorage.removeItem(TOKEN_KEY);
 });
 
-//Just some typeScript-bullshit
+// Typer för hela store, används av useAppSelector och useAppDispatch
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

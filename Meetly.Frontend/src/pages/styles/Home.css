@@ -13,3 +13,10 @@
     gap: 24px;
     margin-top: 24px;
 }
+
+/* Listan ligger ovanför prickarna från välkomstskärmen */
+.home-meetups {
+    position: relative;
+    z-index: 1;
+    scroll-margin-top: 24px; /* lite luft ovanför rubriken när man scrollar hit */
+}

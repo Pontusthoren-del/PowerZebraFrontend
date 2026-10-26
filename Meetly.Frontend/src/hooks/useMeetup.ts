@@ -14,5 +14,5 @@ export function useMeetup(id: number) {
             .finally(() => setLoading(false));
     }, [id]);
 
-    return { meetup, loading, error };
+    return { meetup, setMeetup, loading, error };
 }

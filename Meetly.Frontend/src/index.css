@@ -1,55 +1,66 @@
 /* Globalt: färger, typsnitt och gemensamma stilar.
    Komponenternas egna stilar ligger i components/styles och pages/styles. */
 :root {
-    --font-main: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-main: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 
-    --bg: #f3f5f9; /* bakgrund */
-    --surface: #ffffff; /* kort, header */
-    --text: #14171f; /* mörk text */
-    --muted: #5a6275; /* grå text (Värd, Plats, underrubriker) */
-    --border: #e1e5ee; /* linjer och input-ramar */
+  /* Lugn bas – den starka färgen sparas till det man ska klicka på */
+  --bg: #f0f4f9; /* hover-ytor, ljust blågrå */
+  --surface: #ffffff; /* kort och rutor */
+  --text: #1f2328; /* mörk text, lite mjukare än svart */
+  --muted: #686d76; /* grå text (Värd, Plats, underrubriker) */
+  --border: #e2e8f0; /* linjer och input-ramar */
 
-    --accent: #2146c7; /* klarblå (knappar, logga-punkt, länkar) */
-    --accent-hover: #18359e; /* mörkare blå vid hover */
-    --accent-soft: #eef2ff; /* ljusblå (datum-taggar) */
+  --accent: #3a5ba0; /* dämpad blå (knappar, logga-punkt, länkar) */
+  --accent-hover: #2e4a85; /* mörkare blå vid hover */
+  --accent-soft: #ecf0f7; /* ljusblå (datum-taggar) */
 
-    --success: #1f6e43; /* grön text ("15 platser kvar") */
-    --danger: #b91c1c; /* röd text ("Fullbokad") */
-    --danger-soft: #fee2e2; /* ljusröd bakgrund vid behov */
+  --success: #2f6b4a; /* grön text ("15 platser kvar") */
+  --danger: #b42318; /* röd text ("Fullbokad") */
+  --danger-soft: #fce8e6; /* ljusröd bakgrund vid behov */
 
-    --radius-md: 10px; /* knappar, inputs */
-    --radius-lg: 16px; /* meetup-kort, formulär-boxar */
-    --shadow-sm: 0 2px 8px rgba(20, 23, 31, 0.05);
+  --radius-md: 10px; /* knappar, inputs */
+  --radius-lg: 16px; /* meetup-kort, formulär-boxar */
+  --shadow-sm:
+    0 1px 2px rgba(31, 35, 40, 0.04), 0 4px 12px rgba(31, 35, 40, 0.04);
 
-    /* Ljusblå "fresh"-toner för välkomst, inloggning och knappar */
-    --fresh: #E3F1FF;         /* ljusblå knapp */
-    --fresh-hover: #CFE6FF;   /* lite mörkare vid hover */
-    --fresh-text: #1660BD;    /* blå text på ljusblått (mörk nog för att vara lättläst) */
-    --fresh-strong: #B9DBFF;  /* lite starkare ljusblå, till prickarna */
-    --fresh-bg: #F2F8FF;      /* svag ljusblå bakgrund */
-    --fresh-border: #DCEBFB;  /* ljusblå kant */
+  /* Mjuka toner för välkomst, inloggning och knappar – samma blå som accent */
+  --fresh: #ecf0f7; /* ljus knapp */
+  --fresh-hover: #e0e6f1; /* lite mörkare vid hover */
+  --fresh-text: var(--accent);
+  --fresh-strong: #cfe1f6; /* prickarna */
+  --fresh-bg: #f5f9fe; /* svag bakgrund */
+  --fresh-border: var(--border);
 
-    /* Himmelsblå bakgrund för hela sidan */
-    --sky: #D6EAFC;           /* sidans bakgrund */
-    --sky-deep: #EDF6FF;      /* header och footer (ljusare än sidan) */
-    --sky-dot: #A8CDF1;       /* blå prickar */
-    --sky-dot-light: rgba(255, 255, 255, 0.6);  /* vita prickar */
+  /* Sidans bakgrund */
+  --sky: #f3f8fe; /* reservfärg om gradienten inte laddar */
+  --sky-deep: #ffffff; /* headern, smälter ihop med gradientens topp */
+  --sky-dot: #dce9f8; /* ljusblå prickar */
+  --sky-dot-light: rgba(255, 255, 255, 0.8); /* vita prickar */
+
+  /* Gradient från vitt uppe till ljusblått nere */
+  --sky-gradient: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f3f8fe 45%,
+    #dcebfa 100%
+  );
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background: var(--sky);
-    color: var(--text);
-    font-family: var(--font-main);
-    font-weight: 400;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--sky) var(--sky-gradient) fixed; /* fixed: gradienten följer inte med vid scroll */
+  color: var(--text);
+  font-family: var(--font-main);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Tvinga knappar och formulärfält att ärva Plus Jakarta Sans */
@@ -57,140 +68,166 @@ button,
 input,
 textarea,
 select {
-    font-family: inherit;
-    font-size: inherit;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 /* ---------- Typografi ---------- */
 h1,
 .page-title,
 .home-title {
-    margin: 0 0 8px 0;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h2,
 h3,
 .meetup-card-title {
-    margin: 0 0 12px 0;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text);
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
 }
 
 .page-subtitle {
-    margin: 0 0 28px 0;
-    color: var(--muted);
-    font-size: 16px;
+  margin: 0 0 28px 0;
+  color: var(--muted);
+  font-size: 16px;
 }
 
 /* ---------- Meetup-kort (från Bild 1) ---------- */
 .meetup-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
-    margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
 }
 
 .meetup-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
 }
 
 .meetup-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 /* Ljusblå datum-bubbla ("tis 28 okt · 18:00") */
 .badge-date {
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-weight: 500;
-    font-size: 13px;
-    padding: 6px 12px;
-    border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
 }
 
 /* "15 platser kvar" */
 .spots-available {
-    color: var(--success);
-    font-weight: 500;
-    font-size: 14px;
+  color: var(--success);
+  font-weight: 500;
+  font-size: 14px;
 }
 .spots-full {
-    color: var(--danger);
-    font-weight: 500;
-    font-size: 14px;
+  color: var(--danger);
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .meetup-card-info {
-    margin: 4px 0;
-    color: var(--muted);
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  margin: 4px 0;
+  color: var(--muted);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* ---------- Knappar & Formulär (från Bild 4 & 5) ---------- */
 .btn-primary {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px 20px;
-    background: var(--accent);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 15px;
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.15s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
 }
 .btn-primary:hover {
-    background: var(--accent-hover);
+  background: var(--accent-hover);
 }
 
 .form-group {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 .form-label {
-    display: block;
-    font-weight: 500;
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: var(--text);
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--text);
 }
 .form-input {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    background: var(--surface);
-    color: var(--text);
-    font-size: 15px;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 15px;
 }
 .form-input::placeholder {
-    color: #8c94a6;
+  color: #9a9ea6;
 }
 .form-input:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-soft);
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+/* ---------- Knappar: mjuk övergång på alla knappar ---------- */
+button,
+.btn-primary,
+.hero-button,
+.nav-link,
+.meetup-card-button,
+.meetup-registration-button {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.3s ease;
+}
+button:hover:not(:disabled),
+.btn-primary:hover,
+.hero-button:hover,
+.nav-link:hover,
+.meetup-card-button:hover,
+.meetup-registration-button:hover:not(:disabled) {
+  transform: scale(1.05);
 }

@@ -102,6 +102,10 @@
     color: var(--muted);
 }
 
+.meetup-registration-action {
+    position: relative;
+} /* bubblorna utgår från knappen */
+
 .meetup-registration-button {
     width: 100%;
     padding: 0.75rem 1rem;
@@ -111,11 +115,33 @@
     color: #fff;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.15s ease;
+    transition: background 0.35s ease, transform 0.3s ease;
 }
 
 .meetup-registration-button:hover:not(:disabled) {
     background: var(--accent-hover);
+}
+
+a.meetup-registration-button {
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Anmäld: knappen blir röd och används för att avanmäla */
+/* Anmäld: lugn knapp med röd text, blir ljusröd vid hover */
+.meetup-registration-button-unregister {
+    background: #fd564e;
+    color: #000000;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.meetup-registration-button-unregister:hover:not(:disabled) {
+    background: #b91f17;
+    transform: translateY(-1px);
 }
 
 .meetup-registration-button:disabled {
@@ -131,6 +157,54 @@
 .meetup-registration-note {
     margin: 0.75rem 0 0;
     font-size: 0.8125rem;
+}
+
+.meetup-registration-error {
+    color: var(--danger);
+}
+
+.meetup-registration-success {
+    color: var(--success);
+}
+
+.meetup-confirm-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.meetup-confirm-actions button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.meetup-confirm-keep {
+    border: 1px solid transparent;
+    background: #e3f4e8;
+    color: var(--success);
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+.meetup-confirm-keep:hover {
+    background: #d2eddb;
+    transform: translateY(-1px);
+}
+
+.meetup-confirm-yes {
+    border: 1px solid transparent;
+    background: #d9281e;
+    color: #020202;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+.meetup-confirm-yes:hover {
+    background: #b91f17;
+    transform: translateY(-1px);
 }
 
 @media (max-width: 720px) {
